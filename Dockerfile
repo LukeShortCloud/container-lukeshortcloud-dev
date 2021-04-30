@@ -4,7 +4,7 @@ ENV CODE_SERVER_VER="3.9.3"
 
 RUN apt-get update
 # Install useful tools.
-RUN apt-get install -y apt-file clamav clamav-freshclam curl dnsutils jq mlocate nmap openssl software-properties-common vim wget
+RUN apt-get install -y apt-file clamav clamav-freshclam curl dnsutils jq man-db mlocate nmap openssl software-properties-common vim wget
 # Install compression tools.
 RUN apt-get install -y gzip zip zstd
 # Install programming languages and tools.
