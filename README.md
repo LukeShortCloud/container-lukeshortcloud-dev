@@ -7,13 +7,13 @@ A container image full of development tools that have been found to be useful fo
 Build (optional):
 
 ```
-$ docker build --tag ekultails/ekultails-dev:0.1.0 .
+$ docker build --tag ekultails/ekultails-dev:0.2.0 .
 ```
 
 Run:
 
 ```
-$ docker run -p 127.0.0.1:2003:2003 -v ${HOME}:/mnt -d --name ekultails-dev ekultails-dev:0.1.0
+$ docker run -p 127.0.0.1:2003:2003 -v ${HOME}:/mnt -d --name ekultails-dev ekultails-dev:0.2.0
 ```
 
 Find the auto-generated `code-server` password:
