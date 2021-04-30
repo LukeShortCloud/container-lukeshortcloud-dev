@@ -7,7 +7,7 @@ A container image full of development tools that have been found to be useful fo
 Build (optional):
 
 ```
-$ docker build --tag ekultails-dev:0.1.0 .
+$ docker build --tag ekultails/ekultails-dev:0.1.0 .
 ```
 
 Run:
