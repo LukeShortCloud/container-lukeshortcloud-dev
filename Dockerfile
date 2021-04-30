@@ -12,8 +12,13 @@ RUN apt-get install -y git git-review gcc golang make openjdk-11-jre-headless py
 # Install code-server (Microsoft Visual Studio Code).
 RUN wget https://github.com/cdr/code-server/releases/download/v${CODE_SERVER_VER}/code-server_${CODE_SERVER_VER}_amd64.deb
 RUN apt-get install ./code-server_${CODE_SERVER_VER}_amd64.deb
+# Install Kubernetes tools.
+## kubectl supports kube-apiserver versions that are 1 major version ahead and behind.
+RUN wget https://dl.k8s.io/release/v1.19.10/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl-1.19 && chmod +x /usr/local/bin/kubectl-1.19
+RUN ln -s /usr/local/bin/kubectl-1.19 /usr/local/bin/kubectl
+RUN wget https://github.com/kubernetes-sigs/krew/releases/download/v0.4.1/krew.tar.gz && tar -xvf krew.tar.gz ./krew-linux_amd64 && mv ./krew-linux_amd64 /usr/local/bin/krew && chmod +x /usr/local/bin/krew
 # Cleanup.
-RUN rm -f ./code-server_${CODE_SERVER_VER}_amd64.deb
+RUN rm -f ./code-server_${CODE_SERVER_VER}_amd64.deb ./krew.tar.gz
 RUN apt-get clean all
 
 VOLUME ["/mnt"]
