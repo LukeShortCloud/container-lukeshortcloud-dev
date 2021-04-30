@@ -12,6 +12,8 @@ RUN apt-get install -y git git-review gcc golang make openjdk-11-jre-headless py
 # Install code-server (Microsoft Visual Studio Code).
 RUN wget https://github.com/cdr/code-server/releases/download/v${CODE_SERVER_VER}/code-server_${CODE_SERVER_VER}_amd64.deb
 RUN apt-get install ./code-server_${CODE_SERVER_VER}_amd64.deb
+# Cleanup.
+RUN rm -f ./code-server_${CODE_SERVER_VER}_amd64.deb
 RUN apt-get clean all
 
 VOLUME ["/mnt"]
