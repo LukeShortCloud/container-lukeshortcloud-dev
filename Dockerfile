@@ -14,6 +14,8 @@ RUN wget https://github.com/cdr/code-server/releases/download/v${CODE_SERVER_VER
 RUN apt-get install ./code-server_${CODE_SERVER_VER}_amd64.deb
 RUN apt-get clean all
 
+VOLUME ["/mnt"]
+
 # code-server.
 EXPOSE 2003
 
