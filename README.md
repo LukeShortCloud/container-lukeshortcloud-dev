@@ -1,19 +1,23 @@
 # container-ekultails-dev
 
-A container image full of development tools that have been found to be useful for Luke Short (ekultails).
+`ekultails-dev` is a container image full of development tools that have been found to be useful for Luke Short (ekultails).
+
+## Docker Hub
+
+Docker Hub automatically builds and publishes a new container with the tag `:latest` after every commit to the `main` GitHub branch. Every tagged release in GitHub is also built as a container with the same tag.
 
 ## Usage
 
 Build (optional):
 
 ```
-$ docker build --tag ekultails/ekultails-dev:0.2.0 .
+$ docker build --tag ekultails/ekultails-dev:latest .
 ```
 
 Run:
 
 ```
-$ docker run -p 127.0.0.1:2003:2003 -v ${HOME}:/mnt -d --name ekultails-dev ekultails-dev:0.2.0
+$ docker run -p 127.0.0.1:2003:2003 -v ${HOME}:/mnt -d --name ekultails-dev ekultails/ekultails-dev:latest
 ```
 
 Find the auto-generated `code-server` password:
