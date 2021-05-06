@@ -19,6 +19,8 @@ RUN ln -s /usr/local/bin/kubectl-1.19 /usr/local/bin/kubectl
 RUN wget https://github.com/kubernetes-sigs/krew/releases/download/v0.4.1/krew.tar.gz && tar -xvf krew.tar.gz ./krew-linux_amd64 && mv ./krew-linux_amd64 /usr/local/bin/krew && chmod +x /usr/local/bin/krew
 ## Carvel/k14s tools for Kubernetes.
 RUN wget -O- https://carvel.dev/install.sh | bash
+## Helm for Kubernetes.
+RUN wget -O- https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 # Cleanup.
 RUN rm -f ./code-server_${CODE_SERVER_VER}_amd64.deb ./krew.tar.gz
 RUN apt-get clean all
