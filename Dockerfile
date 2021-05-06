@@ -9,6 +9,10 @@ RUN apt-get install -y apt-file clamav clamav-freshclam curl dnsutils jq man-db 
 RUN apt-get install -y gzip zip zstd
 # Install programming languages and tools.
 RUN apt-get install -y git git-review gcc golang make openjdk-11-jre-headless python3 python3-pip python3-virtualenv virtualenv
+## Install programming language linters.
+RUN apt-get install -y golint python3-pylint-common shellcheck
+### golangci-lint, a more advanced Go linter.
+RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/v1.39.0/install.sh | sh -s -- -b /usr/local/bin v1.39.0
 # Install code-server (Microsoft Visual Studio Code).
 RUN wget https://github.com/cdr/code-server/releases/download/v${CODE_SERVER_VER}/code-server_${CODE_SERVER_VER}_amd64.deb
 RUN apt-get install ./code-server_${CODE_SERVER_VER}_amd64.deb
