@@ -4,9 +4,11 @@ ENV CODE_SERVER_VER="3.9.3"
 
 RUN apt-get update
 # Install useful tools.
-RUN apt-get install -y apt-file clamav clamav-freshclam curl dnsutils jq man-db mlocate nmap openssl software-properties-common vim wget
+RUN apt-get install -y apt-file clamav clamav-freshclam jq man-db mlocate software-properties-common vim
 # Install compression tools.
 RUN apt-get install -y gzip zip zstd
+# Install network tools.
+RUN apt-get install curl dnsutils iputils-ping nmap openssl wget
 # Install programming languages and tools.
 RUN apt-get install -y git git-review gcc golang make openjdk-11-jre-headless python3 python3-pip python3-virtualenv virtualenv
 ## Install programming language linters.
