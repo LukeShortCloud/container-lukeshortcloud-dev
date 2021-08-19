@@ -1,4 +1,4 @@
-FROM debian:bullseye-20210408
+FROM debian:bullseye-20210816
 
 ENV CODE_SERVER_VER="3.9.3"
 
