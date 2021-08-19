@@ -15,6 +15,10 @@ RUN apt-get install -y git git-review gcc golang make openjdk-11-jre-headless py
 RUN apt-get install -y golint python3-pylint-common shellcheck
 ### golangci-lint, a more advanced Go linter.
 RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/v1.39.0/install.sh | sh -s -- -b /usr/local/bin v1.39.0
+# Install ZSH.
+RUN apt-get install -y zsh
+ENV RUNZSH=no
+RUN curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash
 # Install code-server (Microsoft Visual Studio Code).
 RUN wget https://github.com/cdr/code-server/releases/download/v${CODE_SERVER_VER}/code-server_${CODE_SERVER_VER}_amd64.deb
 RUN apt-get install ./code-server_${CODE_SERVER_VER}_amd64.deb
