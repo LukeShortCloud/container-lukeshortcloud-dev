@@ -20,6 +20,12 @@ Run:
 $ docker run -p 127.0.0.1:2003:2003 -v ${HOME}:/mnt -d --name ekultails-dev ekultails/ekultails-dev:latest
 ```
 
+Run with Docker Engine support:
+
+```
+$ docker run -p 127.0.0.1:2003:2003 -v ${HOME}:/mnt -v /var/run/docker.sock:/var/run/docker.sock -d --name ekultails-dev ekultails/ekultails-dev:latest
+```
+
 Find the auto-generated `code-server` password:
 
 ```
