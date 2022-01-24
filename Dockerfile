@@ -33,6 +33,8 @@ RUN wget https://github.com/kubernetes-sigs/krew/releases/download/v0.4.2/krew-l
 RUN wget -O- https://carvel.dev/install.sh | bash
 ## Helm for Kubernetes.
 RUN wget -O- https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
+## Knative client.
+RUN wget https://github.com/knative/client/releases/download/knative-v1.1.0/kn-linux-amd64 -O /usr/local/bin/kn && chmod +x /usr/local/bin/kn
 # Install the Docker Engine.
 RUN ${CMD_APT_INSTALL} docker.io
 # Cleanup.
