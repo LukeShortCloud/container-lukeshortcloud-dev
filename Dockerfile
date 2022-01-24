@@ -1,6 +1,6 @@
 FROM debian:bullseye-20211201
 
-ENV CODE_SERVER_VER="3.9.3"
+ENV CODE_SERVER_VER="3.12.0"
 ENV CMD_APT_INSTALL="apt-get install -y --no-install-recommends"
 
 RUN apt-get update
