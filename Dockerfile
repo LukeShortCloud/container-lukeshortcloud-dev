@@ -1,27 +1,28 @@
 FROM debian:bullseye-20210816
 
 ENV CODE_SERVER_VER="3.9.3"
+ENV CMD_APT_INSTALL="apt-get install -y --no-install-recommends"
 
 RUN apt-get update
 # Install useful tools.
-RUN apt-get install -y apt-file clamav clamav-freshclam jq man-db mlocate software-properties-common vim
+RUN ${CMD_APT_INSTALL} apt-file clamav clamav-freshclam jq man-db mlocate software-properties-common vim
 # Install compression tools.
-RUN apt-get install -y gzip zip zstd
+RUN ${CMD_APT_INSTALL} gzip zip zstd
 # Install network tools.
-RUN apt-get install -y curl dnsutils iputils-ping nmap openssl wget
+RUN ${CMD_APT_INSTALL} curl dnsutils iputils-ping nmap openssl wget
 # Install programming languages and tools.
-RUN apt-get install -y git git-review gcc golang make openjdk-11-jre-headless python3 python3-pip python3-virtualenv virtualenv
+RUN ${CMD_APT_INSTALL} git git-review gcc golang make openjdk-11-jre-headless python3 python3-pip python3-virtualenv virtualenv
 ## Install programming language linters.
-RUN apt-get install -y golint python3-pylint-common shellcheck
+RUN ${CMD_APT_INSTALL} golint python3-pylint-common shellcheck
 ### golangci-lint, a more advanced Go linter.
 RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/v1.39.0/install.sh | sh -s -- -b /usr/local/bin v1.39.0
 # Install ZSH.
-RUN apt-get install -y zsh
+RUN ${CMD_APT_INSTALL} zsh
 ENV RUNZSH=no
 RUN curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash
 # Install code-server (Microsoft Visual Studio Code).
 RUN wget https://github.com/cdr/code-server/releases/download/v${CODE_SERVER_VER}/code-server_${CODE_SERVER_VER}_amd64.deb
-RUN apt-get install ./code-server_${CODE_SERVER_VER}_amd64.deb
+RUN ${CMD_APT_INSTALL} ./code-server_${CODE_SERVER_VER}_amd64.deb
 # Install Kubernetes tools.
 ## kubectl supports kube-apiserver versions that are 1 major version ahead and behind.
 RUN wget https://dl.k8s.io/release/v1.19.10/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl-1.19 && chmod +x /usr/local/bin/kubectl-1.19
@@ -32,7 +33,7 @@ RUN wget -O- https://carvel.dev/install.sh | bash
 ## Helm for Kubernetes.
 RUN wget -O- https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 # Install the Docker Engine.
-RUN apt-get install -y docker.io
+RUN ${CMD_APT_INSTALL} docker.io
 # Cleanup.
 RUN rm -f ./code-server_${CODE_SERVER_VER}_amd64.deb ./krew.tar.gz
 RUN apt-get clean all
