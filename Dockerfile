@@ -15,7 +15,7 @@ RUN ${CMD_APT_INSTALL} git git-review gcc golang make openjdk-11-jre-headless py
 ## Install programming language linters.
 RUN ${CMD_APT_INSTALL} golint python3-pylint-common shellcheck
 ### golangci-lint, a more advanced Go linter.
-RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/v1.39.0/install.sh | sh -s -- -b /usr/local/bin v1.39.0
+RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/v1.43.0/install.sh | sh -s -- -b /usr/local/bin v1.43.0
 # Install ZSH.
 RUN ${CMD_APT_INSTALL} zsh
 ENV RUNZSH=no
