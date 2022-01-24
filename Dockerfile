@@ -1,4 +1,4 @@
-FROM debian:bullseye-20210816
+FROM debian:bullseye-20211201
 
 ENV CODE_SERVER_VER="3.9.3"
 ENV CMD_APT_INSTALL="apt-get install -y --no-install-recommends"
