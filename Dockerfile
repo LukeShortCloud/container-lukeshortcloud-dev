@@ -9,7 +9,7 @@ RUN ${CMD_APT_INSTALL} apt-file clamav clamav-freshclam jq man-db mlocate softwa
 # Install compression tools.
 RUN ${CMD_APT_INSTALL} gzip zip zstd
 # Install network tools.
-RUN ${CMD_APT_INSTALL} curl dnsutils iputils-ping nmap openssl wget
+RUN ${CMD_APT_INSTALL} curl dnsutils iputils-ping netcat nmap openssl wget
 # Install programming languages and tools.
 RUN ${CMD_APT_INSTALL} git git-review gcc golang make openjdk-11-jre-headless python3 python3-pip python3-virtualenv virtualenv
 ## Install programming language linters.
