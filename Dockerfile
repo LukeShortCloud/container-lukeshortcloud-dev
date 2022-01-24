@@ -35,10 +35,13 @@ RUN wget -O- https://carvel.dev/install.sh | bash
 RUN wget -O- https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 ## Knative client.
 RUN wget https://github.com/knative/client/releases/download/knative-v1.1.0/kn-linux-amd64 -O /usr/local/bin/kn && chmod +x /usr/local/bin/kn
+## Tanzu Community Edition (TCE).
+ENV ALLOW_INSTALL_AS_ROOT=true TCE_VER=v0.10.0-rc.2
+RUN wget https://github.com/vmware-tanzu/community-edition/releases/download/${TCE_VER}/tce-linux-amd64-${TCE_VER}.tar.gz && tar -x -v -f tce-linux-amd64-${TCE_VER}.tar.gz && ./tce-linux-amd64-${TCE_VER}/install.sh
 # Install the Docker Engine.
 RUN ${CMD_APT_INSTALL} docker.io
 # Cleanup.
-RUN rm -f ./code-server_${CODE_SERVER_VER}_amd64.deb ./krew.tar.gz
+RUN rm -rf ./code-server_${CODE_SERVER_VER}_amd64.deb ./krew.tar.gz ./tce-linux-amd64-${TCE_VER} ./tce-linux-amd64-${TCE_VER}.tar.gz
 RUN apt-get clean all
 
 VOLUME ["/mnt"]
