@@ -5,7 +5,7 @@ ENV CMD_APT_INSTALL="apt-get install -y --no-install-recommends"
 
 RUN apt-get update
 # Install useful tools.
-RUN ${CMD_APT_INSTALL} apt-file clamav clamav-freshclam jq man-db mlocate software-properties-common vim
+RUN ${CMD_APT_INSTALL} apt-file clamav clamav-freshclam jq less man-db mlocate software-properties-common vim
 # Install compression tools.
 RUN ${CMD_APT_INSTALL} gzip zip zstd
 # Install network tools.
