@@ -60,7 +60,7 @@ RUN wget https://kind.sigs.k8s.io/dl/${KIND_VER}/kind-linux-amd64 -O /usr/local/
 # Install the Docker Engine.
 RUN ${CMD_APT_INSTALL} docker.io
 # Cleanup.
-RUN rm -rf ./code-server_${CODE_SERVER_VER}_amd64.deb ./krew.tar.gz ./tce-linux-amd64-${TCE_VER} ./tce-linux-amd64-${TCE_VER}.tar.gz
+RUN rm -rf ./code-server_${CODE_SERVER_VER}_amd64.deb ./krew-linux_amd64.tar.gz ./tce-linux-amd64-${TCE_VER} ./tce-linux-amd64-${TCE_VER}.tar.gz
 RUN apt-get clean all
 
 VOLUME ["/mnt"]
