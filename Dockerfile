@@ -32,6 +32,9 @@ RUN ln -s /usr/local/bin/kubectl-1.22 /usr/local/bin/kubectl
 RUN wget https://github.com/kubernetes-sigs/krew/releases/download/v0.4.2/krew-linux_amd64.tar.gz && tar -xvf krew-linux_amd64.tar.gz ./krew-linux_amd64 && mv ./krew-linux_amd64 /usr/local/bin/krew && chmod +x /usr/local/bin/krew
 ## Carvel/k14s tools for Kubernetes.
 RUN wget -O- https://carvel.dev/install.sh | bash
+## kpack-cli ('kp' command).
+ENV KPACK_CLI_VER="0.5.0"
+RUN wget https://github.com/vmware-tanzu/kpack-cli/releases/download/v${KPACK_CLI_VER}/kp-linux-${KPACK_CLI_VER} -O /usr/local/bin/kp && chmod +x /usr/local/bin/kp
 ## Helm for Kubernetes.
 RUN wget -O- https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 ## Knative client.
