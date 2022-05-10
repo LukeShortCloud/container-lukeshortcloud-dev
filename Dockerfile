@@ -52,7 +52,7 @@ RUN wget -O- https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm
 ## Knative client.
 RUN wget https://github.com/knative/client/releases/download/knative-v1.1.0/kn-linux-amd64 -O /usr/local/bin/kn && chmod +x /usr/local/bin/kn
 ## Tanzu Community Edition (TCE).
-ENV ALLOW_INSTALL_AS_ROOT=true TCE_VER=v0.11.0
+ENV ALLOW_INSTALL_AS_ROOT=true TCE_VER=v0.12.1
 RUN wget https://github.com/vmware-tanzu/community-edition/releases/download/${TCE_VER}/tce-linux-amd64-${TCE_VER}.tar.gz && tar -x -v -f tce-linux-amd64-${TCE_VER}.tar.gz && ./tce-linux-amd64-${TCE_VER}/install.sh
 ## kind.
 ENV KIND_VER="v0.12.0"
