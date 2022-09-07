@@ -54,7 +54,8 @@ RUN wget https://github.com/vmware-tanzu/kpack-cli/releases/download/v${KPACK_CL
 ## Helm for Kubernetes.
 RUN wget -O- https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 ## Knative client.
-RUN wget https://github.com/knative/client/releases/download/knative-v1.1.0/kn-linux-amd64 -O /usr/local/bin/kn && chmod +x /usr/local/bin/kn
+ENV KNATIVE_CLIENT_VER="1.7.0"
+RUN wget "https://github.com/knative/client/releases/download/knative-v${KNATIVE_CLIENT_VER}/kn-linux-amd64" -O /usr/local/bin/kn && chmod +x /usr/local/bin/kn
 ## Tanzu Community Edition (TCE).
 ENV ALLOW_INSTALL_AS_ROOT=true TCE_VER=v0.12.1
 RUN wget https://github.com/vmware-tanzu/community-edition/releases/download/${TCE_VER}/tce-linux-amd64-${TCE_VER}.tar.gz && tar -x -v -f tce-linux-amd64-${TCE_VER}.tar.gz && ./tce-linux-amd64-${TCE_VER}/install.sh
