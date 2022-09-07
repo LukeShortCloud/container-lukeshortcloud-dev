@@ -57,7 +57,7 @@ RUN wget https://github.com/knative/client/releases/download/knative-v1.1.0/kn-l
 ENV ALLOW_INSTALL_AS_ROOT=true TCE_VER=v0.12.1
 RUN wget https://github.com/vmware-tanzu/community-edition/releases/download/${TCE_VER}/tce-linux-amd64-${TCE_VER}.tar.gz && tar -x -v -f tce-linux-amd64-${TCE_VER}.tar.gz && ./tce-linux-amd64-${TCE_VER}/install.sh
 ## kind.
-ENV KIND_VER="v0.12.0"
+ENV KIND_VER="v0.15.0"
 RUN wget https://kind.sigs.k8s.io/dl/${KIND_VER}/kind-linux-amd64 -O /usr/local/bin/kind && chmod +x /usr/local/bin/kind
 # Install the Docker Engine.
 RUN ${CMD_APT_INSTALL} docker.io
