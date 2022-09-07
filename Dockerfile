@@ -32,7 +32,7 @@ RUN ${CMD_APT_INSTALL} ./code-server_${CODE_SERVER_VER}_amd64.deb
 # Install Kubernetes tools.
 ## kubectl supports kube-apiserver versions that are 1 major version ahead and behind.
 RUN wget https://dl.k8s.io/release/v1.19.16/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl-1.19 && chmod +x /usr/local/bin/kubectl-1.19
-RUN wget https://dl.k8s.io/release/v1.22.9/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl-1.22 && chmod +x /usr/local/bin/kubectl-1.22
+RUN wget https://dl.k8s.io/release/v1.22.13/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl-1.22 && chmod +x /usr/local/bin/kubectl-1.22
 RUN wget https://dl.k8s.io/release/v1.25.0/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl-1.25 && chmod +x /usr/local/bin/kubectl-1.25
 RUN ln -s /usr/local/bin/kubectl-1.22 /usr/local/bin/kubectl
 ### Autocompletion for 'kubectl'.
