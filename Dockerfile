@@ -7,7 +7,7 @@ ENV CMD_APT_INSTALL="apt-get install -y --no-install-recommends"
 RUN apt-get update
 # Install useful tools.
 ## 'sudo' is required for the TCE installer.
-RUN ${CMD_APT_INSTALL} apt-file clamav clamav-freshclam jq less man-db mlocate software-properties-common sudo vim
+RUN ${CMD_APT_INSTALL} apt-file clamav clamav-freshclam jq less man-db mlocate software-properties-common rsync sudo vim
 # Install compression tools.
 RUN ${CMD_APT_INSTALL} gzip zip zstd
 # Install network tools.
