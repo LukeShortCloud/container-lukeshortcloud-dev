@@ -64,6 +64,9 @@ ENV KIND_VER="v0.15.0"
 RUN wget https://kind.sigs.k8s.io/dl/${KIND_VER}/kind-linux-amd64 -O /usr/local/bin/kind && chmod +x /usr/local/bin/kind
 # Install the Docker Engine.
 RUN ${CMD_APT_INSTALL} docker.io
+# Install yq (JSON, XML, and YAML query).
+ENV YQ_VER="v4.28.1"
+RUN wget https://github.com/mikefarah/yq/releases/download/${YQ_VER}/yq_linux_amd64 -O /usr/local/bin/yq && chmod +x /usr/local/bin/yq
 # Cleanup.
 RUN rm -rf ./code-server_${CODE_SERVER_VER}_amd64.deb ./krew-linux_amd64.tar.gz ./tce-linux-amd64-${TCE_VER} ./tce-linux-amd64-${TCE_VER}.tar.gz
 RUN apt-get clean all
