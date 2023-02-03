@@ -69,6 +69,8 @@ ENV YQ_VER="v4.28.1"
 RUN wget https://github.com/mikefarah/yq/releases/download/${YQ_VER}/yq_linux_amd64 -O /usr/local/bin/yq && chmod +x /usr/local/bin/yq
 # Azure CLI ("az" command).
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
+# Sphinx for Root Pages documentation development.
+RUN ${CMD_APT_INSTALL} python3-sphinx python3-sphinx-rtd-theme
 # Cleanup.
 RUN rm -rf ./code-server_${CODE_SERVER_VER}_amd64.deb ./krew-linux_amd64.tar.gz ./tce-linux-amd64-${TCE_VER} ./tce-linux-amd64-${TCE_VER}.tar.gz
 RUN apt-get clean all
