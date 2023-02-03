@@ -14,22 +14,23 @@ Build (optional):
 $ docker build --tag ekultails/ekultails-dev:latest .
 ```
 
-Run:
+Run as a container:
 
 ```
-$ docker run -p 127.0.0.1:2003:2003 -v ${HOME}:/mnt -d --name ekultails-dev ekultails/ekultails-dev:latest
+$ docker run -p 127.0.0.1:2003:2003 -v ${HOME}:/home_real -d --name ekultails-dev ekultails/ekultails-dev:latest code-server --bind-addr 0.0.0.0:2003
 ```
 
-Run with Docker Engine support:
+Run as a container with Docker Engine support:
 
 ```
-$ docker run -v ${HOME}:/mnt -v /var/run/docker.sock:/var/run/docker.sock --network host -d --name ekultails-dev ekultails/ekultails-dev:latest
+$ docker run -v ${HOME}:/home_real -v /var/run/docker.sock:/var/run/docker.sock --network host -d --name ekultails-dev ekultails/ekultails-dev:latest code-server --bind-addr 0.0.0.0:2003
 ```
 
-Find the auto-generated `code-server` password:
+Run as a Toolbox on Fedora:
 
 ```
-$ docker exec ekultails-dev cat /root/.config/code-server/config.yaml | grep password:
+$ toolbox create --image ekultails/ekultails-dev:latest
+$ toolbox enter ekultails-dev-latest
 ```
 
 ## License

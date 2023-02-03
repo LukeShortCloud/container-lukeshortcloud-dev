@@ -75,9 +75,18 @@ RUN ${CMD_APT_INSTALL} python3-sphinx python3-sphinx-rtd-theme
 RUN rm -rf ./code-server_${CODE_SERVER_VER}_amd64.deb ./krew-linux_amd64.tar.gz ./tce-linux-amd64-${TCE_VER} ./tce-linux-amd64-${TCE_VER}.tar.gz
 RUN apt-get clean all
 
-VOLUME ["/mnt"]
+VOLUME ["/home_real"]
 
 # code-server.
 EXPOSE 2003
+#CMD code-server --bind-addr 0.0.0.0:2003
+# Find the auto-generated `code-server` password:
+# $ docker exec ekultails-dev cat /root/.config/code-server/config.yaml | grep password:
 
-CMD code-server --bind-addr 0.0.0.0:2003
+# Toolbox support.
+ENV NAME=ekultails-dev VERSION=rolling
+LABEL com.github.containers.toolbox="true" \
+  name="$NAME" \
+  version="$VERSION"
+RUN echo "%wheel ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/toolbox
+CMD ["/bin/bash"]
