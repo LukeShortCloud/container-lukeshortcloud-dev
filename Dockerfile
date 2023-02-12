@@ -9,7 +9,7 @@ RUN apt-get update
 ## 'sudo' is required for the TCE installer.
 RUN ${CMD_APT_INSTALL} apt-file clamav clamav-freshclam jq less man-db mlocate software-properties-common rsync sudo vim
 # Install compression tools.
-RUN ${CMD_APT_INSTALL} gzip zip zstd
+RUN ${CMD_APT_INSTALL} gzip p7zip-full zip zstd
 # Install network tools.
 RUN ${CMD_APT_INSTALL} curl dnsutils iproute2 iputils-ping netcat nmap openssh-client openssl wget
 # Install programming languages and tools.
