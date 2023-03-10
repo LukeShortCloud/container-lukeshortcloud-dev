@@ -6,7 +6,7 @@ ENV CMD_APT_INSTALL="apt-get install -y --no-install-recommends"
 
 RUN apt-get update
 # Install useful tools.
-## 'sudo' is required for the TCE installer.
+## 'sudo' is required for the container to work as a Toolbox.
 RUN ${CMD_APT_INSTALL} apt-file clamav clamav-freshclam jq less man-db mlocate software-properties-common rsync sudo vim
 # Install compression tools.
 RUN ${CMD_APT_INSTALL} gzip p7zip-full zip zstd
@@ -56,9 +56,6 @@ RUN wget -O- https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm
 ## Knative client.
 ENV KNATIVE_CLIENT_VER="1.7.0"
 RUN wget "https://github.com/knative/client/releases/download/knative-v${KNATIVE_CLIENT_VER}/kn-linux-amd64" -O /usr/local/bin/kn && chmod +x /usr/local/bin/kn
-## Tanzu Community Edition (TCE).
-ENV ALLOW_INSTALL_AS_ROOT=true TCE_VER=v0.12.1
-RUN wget https://github.com/vmware-tanzu/community-edition/releases/download/${TCE_VER}/tce-linux-amd64-${TCE_VER}.tar.gz && tar -x -v -f tce-linux-amd64-${TCE_VER}.tar.gz && ./tce-linux-amd64-${TCE_VER}/install.sh
 ## kind.
 ENV KIND_VER="v0.17.0"
 RUN wget https://kind.sigs.k8s.io/dl/${KIND_VER}/kind-linux-amd64 -O /usr/local/bin/kind && chmod +x /usr/local/bin/kind
@@ -72,7 +69,7 @@ RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 # Sphinx for Root Pages documentation development.
 RUN ${CMD_APT_INSTALL} python3-sphinx python3-sphinx-rtd-theme
 # Cleanup.
-RUN rm -rf ./code-server_${CODE_SERVER_VER}_amd64.deb ./krew-linux_amd64.tar.gz ./tce-linux-amd64-${TCE_VER} ./tce-linux-amd64-${TCE_VER}.tar.gz
+RUN rm -rf ./code-server_${CODE_SERVER_VER}_amd64.deb ./krew-linux_amd64.tar.gz
 RUN apt-get clean all
 
 VOLUME ["/home_real"]
