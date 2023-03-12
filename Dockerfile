@@ -9,7 +9,7 @@ RUN apt-get update
 ## 'sudo' is required for the container to work as a Toolbox.
 RUN ${CMD_APT_INSTALL} apt-file clamav clamav-freshclam jq less man-db mlocate software-properties-common rsync sudo vim
 # Install compression tools.
-RUN ${CMD_APT_INSTALL} gzip p7zip-full zip zstd
+RUN ${CMD_APT_INSTALL} gzip p7zip-full unzip zip zstd
 # Install network tools.
 RUN ${CMD_APT_INSTALL} curl dnsutils iproute2 iputils-ping netcat nmap openssh-client openssl wget
 # Install programming languages and tools.
@@ -68,6 +68,9 @@ RUN wget https://github.com/mikefarah/yq/releases/download/${YQ_VER}/yq_linux_am
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 # Sphinx for Root Pages documentation development.
 RUN ${CMD_APT_INSTALL} python3-sphinx python3-sphinx-rtd-theme
+# HashiCorp Vault.
+ENV VAULT_VER=1.13.0
+RUN wget "https://releases.hashicorp.com/vault/${VAULT_VER}/vault_${VAULT_VER}_linux_amd64.zip" && unzip vault_${VAULT_VER}_linux_amd64.zip && sudo mv ./vault /usr/local/bin/ && vault --version
 # Cleanup.
 RUN rm -rf ./code-server_${CODE_SERVER_VER}_amd64.deb ./krew-linux_amd64.tar.gz
 RUN apt-get clean all
