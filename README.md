@@ -33,6 +33,12 @@ $ toolbox create --image ekultails/ekultails-dev:latest
 $ toolbox enter ekultails-dev-latest
 ```
 
+Run as a Distrobox on any Linux distribution:
+
+```
+$ distrobox create --image ekultails/ekultails-dev:latest --name ekultails-dev
+```
+
 ## License
 
 GPLv3
