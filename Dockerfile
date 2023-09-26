@@ -6,8 +6,10 @@ ENV CMD_APT_INSTALL="apt-get install -y --no-install-recommends"
 
 RUN apt-get update
 # Install useful tools.
+## 'ca-certificates' is not installed by default in Debian container images.
+## https://stackoverflow.com/questions/66473954/no-installed-certificates-on-debianbuster-docker-image
 ## 'sudo' is required for the container to work as a Toolbox.
-RUN ${CMD_APT_INSTALL} apt-file clamav clamav-freshclam jq less man-db mlocate software-properties-common rsync sudo vim
+RUN ${CMD_APT_INSTALL} apt-file ca-certificates clamav clamav-freshclam jq less man-db mlocate software-properties-common rsync sudo vim
 # Install compression tools.
 RUN ${CMD_APT_INSTALL} gzip p7zip-full unzip zip zstd
 # Install network tools.
