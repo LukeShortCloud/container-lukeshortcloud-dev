@@ -56,8 +56,8 @@ RUN cd /usr/local/bin/ && curl -s "https://raw.githubusercontent.com/kubernetes-
 ## Carvel/k14s tools for Kubernetes.
 RUN wget -O- https://carvel.dev/install.sh | bash
 ## kpack-cli ('kp' command).
-ENV KPACK_CLI_VER="0.10.0"
-RUN wget https://github.com/vmware-tanzu/kpack-cli/releases/download/v${KPACK_CLI_VER}/kp-linux-amd64-${KPACK_CLI_VER} -O /usr/local/bin/kp && chmod +x /usr/local/bin/kp
+ENV KPACK_CLI_VER="0.12.0"
+RUN wget https://github.com/buildpacks-community/kpack-cli/releases/download/v${KPACK_CLI_VER}/kp-linux-amd64-${KPACK_CLI_VER} -O /usr/local/bin/kp && chmod +x /usr/local/bin/kp
 ## Helm for Kubernetes.
 RUN wget -O- https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 ## Knative client.
