@@ -76,7 +76,7 @@ RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 # Sphinx for Root Pages documentation development.
 RUN ${CMD_APT_INSTALL} python3-sphinx python3-sphinx-rtd-theme
 # HashiCorp Vault.
-ENV VAULT_VER=1.13.0
+ENV VAULT_VER="1.15.0"
 RUN wget "https://releases.hashicorp.com/vault/${VAULT_VER}/vault_${VAULT_VER}_linux_amd64.zip" && unzip vault_${VAULT_VER}_linux_amd64.zip && sudo mv ./vault /usr/local/bin/ && vault --version
 # Distrobox support.
 ## distrobox-init installs these packages. We pre-install them now so the container can start instantly.
