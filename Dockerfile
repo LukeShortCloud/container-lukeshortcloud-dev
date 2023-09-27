@@ -14,7 +14,7 @@ RUN ${CMD_APT_INSTALL} gzip p7zip-full unzip zip zstd
 # Install network tools.
 RUN ${CMD_APT_INSTALL} curl dnsutils iproute2 iputils-ping netcat nmap openssh-client openssl wget
 # Install programming languages and tools.
-RUN ${CMD_APT_INSTALL} build-essential git git-review gcc golang make openjdk-11-jre-headless python3 python3-pip python3-virtualenv virtualenv
+RUN ${CMD_APT_INSTALL} build-essential git git-review gcc golang make openjdk-17-jdk python3 python3-pip python3-virtualenv virtualenv
 ## Rust.
 ### Configure Rust to be installed globally.
 ENV CARGO_HOME="/usr/local/cargo"
