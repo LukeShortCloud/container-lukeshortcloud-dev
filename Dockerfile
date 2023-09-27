@@ -38,10 +38,10 @@ RUN wget https://github.com/cdr/code-server/releases/download/v${CODE_SERVER_VER
 RUN ${CMD_APT_INSTALL} ./code-server_${CODE_SERVER_VER}_amd64.deb
 # Install Kubernetes tools.
 ## kubectl supports kube-apiserver versions that are 1 major version ahead and behind.
-RUN wget https://dl.k8s.io/release/v1.19.16/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl-1.19 && chmod +x /usr/local/bin/kubectl-1.19
 RUN wget https://dl.k8s.io/release/v1.22.17/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl-1.22 && chmod +x /usr/local/bin/kubectl-1.22
 RUN wget https://dl.k8s.io/release/v1.25.14/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl-1.25 && chmod +x /usr/local/bin/kubectl-1.25
-RUN ln -s /usr/local/bin/kubectl-1.22 /usr/local/bin/kubectl
+RUN wget https://dl.k8s.io/release/v1.28.2/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl-1.28 && chmod +x /usr/local/bin/kubectl-1.28
+RUN ln -s /usr/local/bin/kubectl-1.25 /usr/local/bin/kubectl
 ### Autocompletion for 'kubectl'.
 ### https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-bash-linux/
 RUN ${CMD_APT_INSTALL} bash-completion
