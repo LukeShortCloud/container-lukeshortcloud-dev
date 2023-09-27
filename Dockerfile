@@ -26,7 +26,7 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | d
 ## Install programming language linters.
 RUN ${CMD_APT_INSTALL} golint python3-pylint-common shellcheck
 ### golangci-lint, a more advanced Go linter.
-ENV GOLANGCI_LINT_VER="1.51.2"
+ENV GOLANGCI_LINT_VER="1.54.2"
 RUN curl -sSfL "https://raw.githubusercontent.com/golangci/golangci-lint/v${GOLANGCI_LINT_VER}/install.sh" | sh -s -- -b /usr/local/bin "v${GOLANGCI_LINT_VER}"
 # Install ZSH.
 RUN ${CMD_APT_INSTALL} zsh
