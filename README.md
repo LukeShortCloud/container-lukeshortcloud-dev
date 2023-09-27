@@ -37,6 +37,7 @@ Run as a Distrobox on any Linux distribution:
 
 ```
 $ distrobox create --image ekultails/ekultails-dev:latest --name ekultails-dev
+$ distrobox enter ekultails-dev
 ```
 
 ## License

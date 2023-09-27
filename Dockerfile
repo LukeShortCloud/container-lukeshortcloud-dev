@@ -78,6 +78,10 @@ RUN ${CMD_APT_INSTALL} python3-sphinx python3-sphinx-rtd-theme
 # HashiCorp Vault.
 ENV VAULT_VER=1.13.0
 RUN wget "https://releases.hashicorp.com/vault/${VAULT_VER}/vault_${VAULT_VER}_linux_amd64.zip" && unzip vault_${VAULT_VER}_linux_amd64.zip && sudo mv ./vault /usr/local/bin/ && vault --version
+# Distrobox support.
+## distrobox-init installs these packages. We pre-install them now so the container can start instantly.
+## https://github.com/89luca89/distrobox/blob/1.5.0.2/distrobox-init#L419
+RUN ${CMD_APT_INSTALL} apt-utils bash bash-completion bc bzip2 curl dialog diffutils findutils gnupg gnupg2 gpgsm hostname iproute2 iputils-ping keyutils less libcap2-bin libegl1-mesa libgl1-mesa-glx libkrb5-3 libnss-mdns libnss-myhostname libvte-2.9*-common libvte-common libvulkan1 locales lsof man-db manpages mesa-vulkan-drivers mtr ncurses-base openssh-client passwd pigz pinentry-curses procps rsync sudo tcpdump time traceroute tree tzdata unzip util-linux wget xauth xz-utils zip
 # Cleanup.
 RUN rm -rf ./code-server_${CODE_SERVER_VER}_amd64.deb ./krew-linux_amd64.tar.gz
 RUN apt-get clean all
