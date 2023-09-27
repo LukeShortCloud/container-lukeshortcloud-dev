@@ -61,7 +61,7 @@ RUN wget https://github.com/buildpacks-community/kpack-cli/releases/download/v${
 ## Helm for Kubernetes.
 RUN wget -O- https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 ## Knative client.
-ENV KNATIVE_CLIENT_VER="1.9.1"
+ENV KNATIVE_CLIENT_VER="1.11.0"
 RUN wget "https://github.com/knative/client/releases/download/knative-v${KNATIVE_CLIENT_VER}/kn-linux-amd64" -O /usr/local/bin/kn && chmod +x /usr/local/bin/kn
 ## kind.
 ENV KIND_VER="v0.17.0"
