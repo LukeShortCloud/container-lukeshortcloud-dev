@@ -1,6 +1,5 @@
 FROM debian:11.7
 
-ENV CODE_SERVER_VER="4.10.1"
 ENV CMD_APT_INSTALL="apt-get install -y --no-install-recommends"
 
 RUN apt-get update
@@ -34,6 +33,7 @@ RUN ${CMD_APT_INSTALL} zsh
 ENV RUNZSH=no
 RUN curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash
 # Install code-server (Microsoft Visual Studio Code).
+ENV CODE_SERVER_VER="4.17.0"
 RUN wget https://github.com/cdr/code-server/releases/download/v${CODE_SERVER_VER}/code-server_${CODE_SERVER_VER}_amd64.deb
 RUN ${CMD_APT_INSTALL} ./code-server_${CODE_SERVER_VER}_amd64.deb
 # Install Kubernetes tools.
