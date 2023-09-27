@@ -69,7 +69,7 @@ RUN wget https://kind.sigs.k8s.io/dl/${KIND_VER}/kind-linux-amd64 -O /usr/local/
 # Install the Docker Engine.
 RUN ${CMD_APT_INSTALL} docker.io
 # Install yq (JSON, XML, and YAML query).
-ENV YQ_VER="v4.31.2"
+ENV YQ_VER="v4.35.2"
 RUN wget https://github.com/mikefarah/yq/releases/download/${YQ_VER}/yq_linux_amd64 -O /usr/local/bin/yq && chmod +x /usr/local/bin/yq
 # Azure CLI ("az" command).
 RUN curl -sL https://aka.ms/InstallAzureCLIDeb | bash
