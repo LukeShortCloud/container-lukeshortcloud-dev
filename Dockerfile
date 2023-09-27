@@ -1,5 +1,4 @@
-# Debian 11.6.
-FROM debian:bullseye-20230109
+FROM debian:11.7
 
 ENV CODE_SERVER_VER="4.10.1"
 ENV CMD_APT_INSTALL="apt-get install -y --no-install-recommends"
