@@ -42,8 +42,8 @@ RUN ln -s /usr/local/bin/kubectl-1.22 /usr/local/bin/kubectl
 ### Autocompletion for 'kubectl'.
 ### https://kubernetes.io/docs/tasks/tools/included/optional-kubectl-configs-bash-linux/
 RUN ${CMD_APT_INSTALL} bash-completion
-RUN echo 'source /usr/share/bash-completion/bash_completion' >> /root/.bashrc
-RUN echo 'source <(kubectl completion bash)' >> /root/.bashrc
+RUN echo 'source /usr/share/bash-completion/bash_completion' >> /etc/bashrc
+RUN echo 'source <(kubectl completion bash)' >> /etc/bashrc
 ### Krew.
 ENV KREW_VER="0.4.3"
 RUN wget "https://github.com/kubernetes-sigs/krew/releases/download/v${KREW_VER}/krew-linux_amd64.tar.gz" && tar -xvf krew-linux_amd64.tar.gz ./krew-linux_amd64 && mv ./krew-linux_amd64 /usr/local/bin/krew && chmod +x /usr/local/bin/krew
