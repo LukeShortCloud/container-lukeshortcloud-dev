@@ -48,7 +48,7 @@ RUN ${CMD_APT_INSTALL} bash-completion
 RUN echo 'source /usr/share/bash-completion/bash_completion' >> /etc/bashrc
 RUN echo 'source <(kubectl completion bash)' >> /etc/bashrc
 ### Krew.
-ENV KREW_VER="0.4.3"
+ENV KREW_VER="0.4.4"
 RUN wget "https://github.com/kubernetes-sigs/krew/releases/download/v${KREW_VER}/krew-linux_amd64.tar.gz" && tar -xvf krew-linux_amd64.tar.gz ./krew-linux_amd64 && mv ./krew-linux_amd64 /usr/local/bin/krew && chmod +x /usr/local/bin/krew
 ### Kustomize. This will install the latest version into the current working directory.
 ### https://kubectl.docs.kubernetes.io/installation/kustomize/binaries/
