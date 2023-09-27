@@ -64,7 +64,7 @@ RUN wget -O- https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm
 ENV KNATIVE_CLIENT_VER="1.11.0"
 RUN wget "https://github.com/knative/client/releases/download/knative-v${KNATIVE_CLIENT_VER}/kn-linux-amd64" -O /usr/local/bin/kn && chmod +x /usr/local/bin/kn
 ## kind.
-ENV KIND_VER="v0.17.0"
+ENV KIND_VER="v0.20.0"
 RUN wget https://kind.sigs.k8s.io/dl/${KIND_VER}/kind-linux-amd64 -O /usr/local/bin/kind && chmod +x /usr/local/bin/kind
 # Install the Docker Engine.
 RUN ${CMD_APT_INSTALL} docker.io
