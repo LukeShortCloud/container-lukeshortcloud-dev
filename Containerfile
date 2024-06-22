@@ -92,7 +92,7 @@ VOLUME ["/home_real"]
 EXPOSE 2003
 #CMD code-server --bind-addr 0.0.0.0:2003
 # Find the auto-generated `code-server` password:
-# $ docker exec ekultails-dev cat /root/.config/code-server/config.yaml | grep password:
+# $ podman exec ekultails-dev cat /root/.config/code-server/config.yaml | grep password:
 
 # Toolbox support.
 ENV NAME=ekultails-dev VERSION=rolling
