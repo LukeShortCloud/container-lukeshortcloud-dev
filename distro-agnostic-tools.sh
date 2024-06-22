@@ -52,7 +52,7 @@ wget "https://github.com/knative/client/releases/download/knative-v${KNATIVE_CLI
 chmod +x /usr/local/bin/kn
 kn version
 ## kpack-cli ('kp' command).
-export KPACK_CLI_VER="0.12.0"
+export KPACK_CLI_VER="0.13.0"
 wget https://github.com/buildpacks-community/kpack-cli/releases/download/v${KPACK_CLI_VER}/kp-linux-amd64-${KPACK_CLI_VER} -O /usr/local/bin/kp
 chmod +x /usr/local/bin/kp
 kp version
