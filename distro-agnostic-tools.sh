@@ -42,8 +42,8 @@ kind version
 ## kubectl.
 ## This supports kube-apiserver versions that are 1 major version ahead and behind.
 wget https://dl.k8s.io/release/v1.22.17/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl-1.22 && chmod +x /usr/local/bin/kubectl-1.22
-wget https://dl.k8s.io/release/v1.25.14/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl-1.25 && chmod +x /usr/local/bin/kubectl-1.25
-wget https://dl.k8s.io/release/v1.28.2/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl-1.28 && chmod +x /usr/local/bin/kubectl-1.28
+wget https://dl.k8s.io/release/v1.25.16/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl-1.25 && chmod +x /usr/local/bin/kubectl-1.25
+wget https://dl.k8s.io/release/v1.28.11/bin/linux/amd64/kubectl -O /usr/local/bin/kubectl-1.28 && chmod +x /usr/local/bin/kubectl-1.28
 ln -s /usr/local/bin/kubectl-1.25 /usr/local/bin/kubectl
 kubectl version --client
 ## Knative client.
