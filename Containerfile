@@ -21,10 +21,6 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | d
 RUN ${CMD_APT_INSTALL} golint python3-pylint-common shellcheck
 # Install ZSH.
 RUN ${CMD_APT_INSTALL} zsh
-# Install code-server (Microsoft Visual Studio Code).
-ENV CODE_SERVER_VER="4.17.0"
-RUN wget https://github.com/cdr/code-server/releases/download/v${CODE_SERVER_VER}/code-server_${CODE_SERVER_VER}_amd64.deb
-RUN ${CMD_APT_INSTALL} ./code-server_${CODE_SERVER_VER}_amd64.deb
 # Install the Docker Engine.
 RUN ${CMD_APT_INSTALL} docker.io
 # Sphinx for Root Pages documentation development.
@@ -38,7 +34,6 @@ COPY distro-agnostic-tools.sh /usr/local/bin/
 RUN /usr/local/bin/distro-agnostic-tools.sh
 
 # Cleanup.
-RUN rm -rf ./code-server_${CODE_SERVER_VER}_amd64.deb
 RUN apt-get clean all
 
 VOLUME ["/home_real"]

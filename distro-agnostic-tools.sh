@@ -6,6 +6,10 @@ set -e -x
 # Azure CLI ("az" command).
 curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 
+# code-server (Microsoft Visual Studio Code web server).
+curl -fsSL https://code-server.dev/install.sh | sh
+code-server --version
+
 # golangci-lint.
 export GOLANGCI_LINT_VER="1.54.2"
 curl -sSfL "https://raw.githubusercontent.com/golangci/golangci-lint/v${GOLANGCI_LINT_VER}/install.sh" | sh -s -- -b /usr/local/bin "v${GOLANGCI_LINT_VER}"
