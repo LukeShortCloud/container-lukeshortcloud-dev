@@ -35,7 +35,7 @@ ytt --version
 wget -O- https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
 helm version
 ## kind.
-export KIND_VER="v0.20.0"
+export KIND_VER="v0.23.0"
 wget https://kind.sigs.k8s.io/dl/${KIND_VER}/kind-linux-amd64 -O /usr/local/bin/kind
 chmod +x /usr/local/bin/kind
 kind version
