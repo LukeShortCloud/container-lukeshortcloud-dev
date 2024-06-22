@@ -8,11 +8,11 @@ Build (optional):
 
 - Docker:
     ```
-    $ docker build --tag ekultails/ekultails-dev:latest . -f Containerfile
+    $ docker build --pull --tag ekultails/ekultails-dev:latest . -f Containerfile
     ```
 - Podman:
     ```
-    $ podman build --tag ekultails/ekultails-dev:latest .
+    $ podman build --pull --tag ekultails/ekultails-dev:latest .
     ```
 
 Run as a container:
