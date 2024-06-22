@@ -83,7 +83,7 @@ curl -sSf https://sh.rustup.rs | bash -s -- -y
 /usr/local/cargo/bin/cargo version
 
 # yq for querying JSON, XML, and YAML.
-export YQ_VER="v4.35.2"
+export YQ_VER="v4.44.2"
 wget https://github.com/mikefarah/yq/releases/download/${YQ_VER}/yq_linux_amd64 -O /usr/local/bin/yq
 chmod +x /usr/local/bin/yq
 yq --version
