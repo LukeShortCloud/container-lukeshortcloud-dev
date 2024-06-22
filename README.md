@@ -2,10 +2,6 @@
 
 `ekultails-dev` is a container image full of development tools that have been found to be useful for Luke Short (ekultails).
 
-## Docker Hub
-
-Docker Hub automatically builds and publishes a new container with the tag `:latest` after every commit to the `main` GitHub branch. Every tagged release in GitHub is also built as a container with the same tag.
-
 ## Usage
 
 Build (optional):
