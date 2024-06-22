@@ -21,8 +21,8 @@ RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | d
 RUN ${CMD_APT_INSTALL} python3-pylint-common shellcheck
 # Install ZSH.
 RUN ${CMD_APT_INSTALL} zsh
-# Install the Docker Engine.
-RUN ${CMD_APT_INSTALL} docker.io
+# Install container engines.
+RUN ${CMD_APT_INSTALL} docker.io podman
 # Sphinx for Root Pages documentation development.
 RUN ${CMD_APT_INSTALL} python3-sphinx python3-sphinx-rtd-theme
 # Distrobox support.
