@@ -11,14 +11,14 @@ RUN ${CMD_APT_INSTALL} apt-file bash-completion ca-certificates clamav clamav-fr
 # Install compression tools.
 RUN ${CMD_APT_INSTALL} gzip p7zip-full unzip zip zstd
 # Install network tools.
-RUN ${CMD_APT_INSTALL} curl dnsutils iproute2 iputils-ping netcat nmap openssh-client openssl wget
+RUN ${CMD_APT_INSTALL} curl dnsutils iproute2 iputils-ping netcat-traditional nmap openssh-client openssl wget
 # Install programming languages and tools.
 RUN ${CMD_APT_INSTALL} build-essential git git-review gcc golang make openjdk-17-jdk python3 python3-pip python3-virtualenv virtualenv
 ## GitHub CLI ('gh' command).
 ## https://github.com/cli/cli/blob/trunk/docs/install_linux.md
 RUN curl -fsSL https://cli.github.com/packages/githubcli-archive-keyring.gpg | dd of=/usr/share/keyrings/githubcli-archive-keyring.gpg && echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" >> /etc/apt/sources.list.d/github-cli.list && apt-get update && ${CMD_APT_INSTALL} gh
 ## Install programming language linters.
-RUN ${CMD_APT_INSTALL} golint python3-pylint-common shellcheck
+RUN ${CMD_APT_INSTALL} python3-pylint-common shellcheck
 # Install ZSH.
 RUN ${CMD_APT_INSTALL} zsh
 # Install the Docker Engine.
