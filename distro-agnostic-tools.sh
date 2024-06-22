@@ -47,7 +47,7 @@ wget https://dl.k8s.io/release/v1.28.11/bin/linux/amd64/kubectl -O /usr/local/bi
 ln -s /usr/local/bin/kubectl-1.25 /usr/local/bin/kubectl
 kubectl version --client
 ## Knative client.
-export KNATIVE_CLIENT_VER="1.11.0"
+export KNATIVE_CLIENT_VER="1.14.0"
 wget "https://github.com/knative/client/releases/download/knative-v${KNATIVE_CLIENT_VER}/kn-linux-amd64" -O /usr/local/bin/kn
 chmod +x /usr/local/bin/kn
 kn version
