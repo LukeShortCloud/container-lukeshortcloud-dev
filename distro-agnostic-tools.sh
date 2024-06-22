@@ -3,6 +3,13 @@
 # Enable (1) exit on errors and (2) debug logging.
 set -e -x
 
+# AWS CLI.
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+rm -r -f ./awscliv2.zip ./aws
+aws --version
+
 # Azure CLI ("az" command).
 curl -sL https://aka.ms/InstallAzureCLIDeb | bash
 az --version
