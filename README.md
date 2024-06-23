@@ -1,6 +1,13 @@
 # container-lukeshortcloud-dev
 
-`dev` is a container image full of useful development tools.
+`dev` is a container image full of useful development tools. Both a Debian and Fedora container are maintained.
+
+## Container Registry
+
+Quay.io automatically builds and publishes a new container with the tag `:latest` after every commit to the `main` GitHub branch. Every tagged release in GitHub is also built as a container with the same tag.
+
+- quay.io/lukeshortcloud/dev-debian:latest
+- quay.io/lukeshortcloud/dev-fedora:latest
 
 ## Usage
 
