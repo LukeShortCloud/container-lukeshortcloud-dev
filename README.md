@@ -1,43 +1,39 @@
-# container-ekultails-dev
+# container-lukeshortcloud-dev
 
-`ekultails-dev` is a container image full of development tools that have been found to be useful for Luke Short (ekultails).
-
-## Docker Hub
-
-Docker Hub automatically builds and publishes a new container with the tag `:latest` after every commit to the `main` GitHub branch. Every tagged release in GitHub is also built as a container with the same tag.
+`dev` is a container image full of useful development tools.
 
 ## Usage
 
 Build (optional):
 
 ```
-$ docker build --tag ekultails/ekultails-dev:latest .
+$ [docker|podman] build --pull --tag lukeshortcloud/dev-[debian|fedora]:latest . -f Containerfile.[debian|fedora]
 ```
 
 Run as a container:
 
 ```
-$ docker run -p 127.0.0.1:2003:2003 -v ${HOME}:/home_real -d --name ekultails-dev ekultails/ekultails-dev:latest code-server --bind-addr 0.0.0.0:2003
+$ [docker|podman] run -p 127.0.0.1:2003:2003 -v ${HOME}:/home_real -d --name dev-[debian|fedora] lukeshortcloud/dev-[debian|fedora]:latest code-server --bind-addr 0.0.0.0:2003
 ```
 
 Run as a container with Docker Engine support:
 
 ```
-$ docker run -v ${HOME}:/home_real -v /var/run/docker.sock:/var/run/docker.sock --network host -d --name ekultails-dev ekultails/ekultails-dev:latest code-server --bind-addr 0.0.0.0:2003
+$ [docker|podman] run -v ${HOME}:/home_real -v /var/run/docker.sock:/var/run/docker.sock --network host -d --name dev-[debian|fedora] lukeshortcloud/dev-[debian|fedora]:latest code-server --bind-addr 0.0.0.0:2003
 ```
 
-Run as a Toolbox on Fedora:
+Run as a Toolbox on Fedora Atomic Desktop:
 
 ```
-$ toolbox create --image ekultails/ekultails-dev:latest
-$ toolbox enter ekultails-dev-latest
+$ toolbox create --image lukeshortcloud/dev-[debian|fedora]:latest
+$ toolbox enter lukeshortcloud-dev-[debian|fedora]-latest
 ```
 
 Run as a Distrobox on any Linux distribution:
 
 ```
-$ distrobox create --image ekultails/ekultails-dev:latest --name ekultails-dev
-$ distrobox enter ekultails-dev
+$ distrobox create --image lukeshortcloud/dev-[debian|fedora]:latest --name dev-[debian|fedora]
+$ distrobox enter dev-[debian|fedora]
 ```
 
 ## License
