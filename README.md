@@ -40,7 +40,7 @@ $ toolbox enter lukeshortcloud-dev-[debian|fedora]-latest
 Run as a Distrobox on any Linux distribution:
 
 ```
-$ distrobox create --image lukeshortcloud/dev-[debian|fedora]:latest --name dev-[debian|fedora]
+$ distrobox create --init --image lukeshortcloud/dev-[debian|fedora]:latest --name dev-[debian|fedora]
 $ distrobox enter dev-[debian|fedora]
 ```
 
