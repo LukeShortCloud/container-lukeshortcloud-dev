@@ -7,7 +7,7 @@ RUN apt-get update
 ## 'ca-certificates' is not installed by default in Debian container images.
 ## https://stackoverflow.com/questions/66473954/no-installed-certificates-on-debianbuster-docker-image
 ## 'sudo' is required for the container to work as a Toolbox.
-RUN ${CMD_APT_INSTALL} apt-file bash-completion ca-certificates clamav clamav-freshclam jq less man-db mlocate software-properties-common rsync sudo vim
+RUN ${CMD_APT_INSTALL} apt-file bash-completion ca-certificates clamav clamav-freshclam jq less man-db mlocate software-properties-common rsync sudo tmux vim
 # Install compression tools.
 RUN ${CMD_APT_INSTALL} gzip p7zip-full unzip zip zstd
 # Install network tools.
@@ -40,11 +40,8 @@ RUN apt-get clean all
 
 VOLUME ["/home_real"]
 
-# code-server.
+# code-server custom port (default is 8080).
 EXPOSE 2003
-#CMD code-server --bind-addr 0.0.0.0:2003
-# Find the auto-generated `code-server` password:
-# $ podman exec dev cat /root/.config/code-server/config.yaml | grep password:
 
 # Toolbox support.
 ENV NAME=lukeshortcloud-dev VERSION=rolling
