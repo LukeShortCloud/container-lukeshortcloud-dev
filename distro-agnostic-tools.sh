@@ -10,10 +10,6 @@ sudo ./aws/install
 rm -r -f ./awscliv2.zip ./aws
 aws --version
 
-# Azure CLI ("az" command).
-curl -sL https://aka.ms/InstallAzureCLIDeb | bash
-az --version
-
 # code-server (Microsoft Visual Studio Code web server).
 curl -fsSL https://code-server.dev/install.sh | sh
 code-server --version
@@ -36,6 +32,7 @@ vault --version
 echo 'source /usr/share/bash-completion/bash_completion' >> /etc/bashrc
 echo 'source <(kubectl completion bash)' >> /etc/bashrc
 ## Carvel/k14s.
+### Requires the "shasum" tool to install.
 wget -O- https://carvel.dev/install.sh | bash
 ytt --version
 ## Helm.

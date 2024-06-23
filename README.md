@@ -7,7 +7,7 @@
 Build (optional):
 
 ```
-$ [docker|podman] build --pull --tag ekultails/ekultails-dev:latest . -f Containerfile.debian
+$ [docker|podman] build --pull --tag ekultails/ekultails-dev:latest . -f Containerfile.[debian|fedora]
 ```
 
 Run as a container:
