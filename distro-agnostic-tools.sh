@@ -3,6 +3,9 @@
 # Enable (1) exit on errors and (2) debug logging.
 set -e -x
 
+# Configure default text editor.
+echo "EDITOR=vim" >> /etc/environment
+
 # AWS CLI.
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
 unzip awscliv2.zip
