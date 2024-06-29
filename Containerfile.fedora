@@ -4,7 +4,7 @@ ENV CMD_DNF_INSTALL="dnf install -y --setopt=install_weak_deps=false"
 
 # Install useful tools.
 ## 'sudo' is required for the container to work as a Toolbox.
-RUN ${CMD_DNF_INSTALL} dnf dnf-plugins-core dnf5 dnf5-plugins bash-completion clamav clamav-freshclam jq less man-db mlocate nano perl-Digest-SHA rsync sudo systemd tmate tmux vim
+RUN ${CMD_DNF_INSTALL} dnf dnf-plugins-core dnf5 dnf5-plugins bash-completion clamav clamav-freshclam jq less man-db mlocate nano perl-Digest-SHA rpm-ostree rsync sudo systemd tmate tmux vim
 # Install compression tools.
 RUN ${CMD_DNF_INSTALL} gzip p7zip p7zip-plugins unzip zip zstd
 # Install network tools.
