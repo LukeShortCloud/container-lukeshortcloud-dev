@@ -17,6 +17,13 @@ Build (optional):
 $ [docker|podman] build --pull --tag lukeshortcloud/dev-[debian|fedora]:latest . -f Containerfile.[debian|fedora]
 ```
 
+Experimental support is provided for Ubuntu builds:
+
+```
+$ sed -i s'/^FROM debian:.*/FROM ubuntu:24.04/'g Containerfile.debian
+$ [docker|podman] build --pull --tag lukeshortcloud/dev-ubuntu:latest . -f Containerfile.debian
+```
+
 Run as a container:
 
 ```
