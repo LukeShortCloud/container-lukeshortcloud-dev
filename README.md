@@ -34,7 +34,7 @@ Run as a container with Docker Engine support:
 
 ```
 $ [docker|podman] run -v ${HOME}:/home_real -v /var/run/docker.sock:/var/run/docker.sock --network host -d --name dev-[debian|fedora] lukeshortcloud/dev-[debian|fedora]:latest code-server --bind-addr 0.0.0.0:2003
-$ podman exec dev-[debian|fedora] cat /root/.config/code-server/config.yaml | grep password:
+$ [docker|podman] exec dev-[debian|fedora] cat /root/.config/code-server/config.yaml | grep password:
 ```
 
 Run as a Toolbox on Fedora Atomic Desktop:
