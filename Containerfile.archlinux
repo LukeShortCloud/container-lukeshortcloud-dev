@@ -1,0 +1,46 @@
+FROM archlinux:latest
+
+ENV CMD_pacman_INSTALL="pacman -S --needed --noconfirm"
+
+# Install useful tools.
+RUN ${CMD_pacman_INSTALL} && pacman -S base-devel git sudo bash vim nano emacs rsync cpio grub systemd man-db
+# Install compression tools.
+RUN ${CMD_pacman_INSTALL} gzip unzip zip zstd xz-utils unrar
+# Install network tools.
+RUN ${CMD_pacman_INSTALL} curl iproute iputils netcat nmap openssh-clients openssl wget
+# Install programming languages and tools.
+RUN ${CMD_pacman_INSTALL} git git-review gcc golang java jre-openjdk | grep jre | grep jdk
+# Install ZSH.
+RUN ${CMD_pacman_INSTALL} zsh
+# Install container engines.
+RUN ${CMD_pacman_INSTALL} docker podman
+# Sphinx for Root Pages documentation development.
+RUN ${CMD_pacman_INSTALL} python
+# Distrobox support.
+## distrobox-init installs these packages. We pre-install them now so the container can start instantly.
+RUN ${CMD_pacman_INSTALL} bash bash-completion bc bzip2 curl findutils glibc-all-langpacks glibc-locale-source gnupg2 gnupg2-smime hostname iproute iputils keyutils man-db man-pages passwd time tree unzip util-linux wget which whois words xorg-x11-xauth xz zip mesa-vulkan-drivers vulkan
+RUN ${CMD_pacman_INSTALL} azure-cli
+# Install Linux distribution agnostic packages.
+COPY distro-agnostic-tools.sh /usr/local/bin/
+RUN /usr/local/bin/distro-agnostic-tools.sh
+
+# Cleanup.
+RUN ls /var/cache/pacman/pkg/ 
+RUN pacman -Sc
+RUN pacman -Scc
+RUN ${CMD_PACMAN_INSTALL} pacman-contrib
+RUN paccache -r
+
+VOLUME ["/home_real"]
+
+# code-server custom port (default is 8080).
+EXPOSE 2003
+
+# Toolbox support.
+ENV NAME=lukeshortcloud-dev VERSION=rolling
+LABEL com.github.containers.toolbox="true" \
+  name="$NAME" \
+  version="$VERSION"
+RUN echo "%wheel ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/toolbox
+CMD ["/bin/bash"]
+
