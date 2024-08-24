@@ -18,8 +18,8 @@ RUN ${CMD_pacman_INSTALL} docker podman
 RUN ${CMD_pacman_INSTALL} python
 # Distrobox support.
 ## distrobox-init installs these packages. We pre-install them now so the container can start instantly.
-RUN ${CMD_DNF_INSTALL} bash bash-completion bc bzip2 curl findutils glibc-all-langpacks glibc-locale-source gnupg2 gnupg2-smime hostname iproute iputils keyutils man-db man-pages passwd time tree unzip util-linux wget which whois words xorg-x11-xauth xz zip mesa-vulkan-drivers vulkan
-RUN ${CMD_DNF_INSTALL} azure-cli
+RUN ${CMD_pacman_INSTALL} bash bash-completion bc bzip2 curl findutils glibc-all-langpacks glibc-locale-source gnupg2 gnupg2-smime hostname iproute iputils keyutils man-db man-pages passwd time tree unzip util-linux wget which whois words xorg-x11-xauth xz zip mesa-vulkan-drivers vulkan
+RUN ${CMD_pacman_INSTALL} azure-cli
 # Install Linux distribution agnostic packages.
 COPY distro-agnostic-tools.sh /usr/local/bin/
 RUN /usr/local/bin/distro-agnostic-tools.sh
