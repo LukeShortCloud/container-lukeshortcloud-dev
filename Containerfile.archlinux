@@ -28,7 +28,7 @@ RUN /usr/local/bin/distro-agnostic-tools.sh
 RUN ls /var/cache/pacman/pkg/ 
 RUN pacman -Sc
 RUN pacman -Scc
-RUN pacman -S pacman-contrib
+RUN ${CMD_PACMAN_INSTALL} pacman-contrib
 RUN paccache -r
 
 VOLUME ["/home_real"]
