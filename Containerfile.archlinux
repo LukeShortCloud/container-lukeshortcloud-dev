@@ -25,7 +25,7 @@ COPY distro-agnostic-tools.sh /usr/local/bin/
 RUN /usr/local/bin/distro-agnostic-tools.sh
 
 # Cleanup.
-RUN ls /var/cache/pacman/pkg/ | less 
+RUN ls /var/cache/pacman/pkg/ 
 RUN pacman -Sc
 RUN pacman -Scc
 RUN pacman -S pacman-contrib
