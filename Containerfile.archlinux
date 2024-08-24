@@ -7,7 +7,7 @@ RUN ${CMD_pacman_INSTALL} && pacman -S base-devel git sudo bash vim nano emacs r
 # Install compression tools.
 RUN ${CMD_pacman_INSTALL} gzip unzip zip zstd xz-utils unrar
 # Install network tools.
-RUN ${CMD_DNF_INSTALL} curl iproute iputils netcat nmap openssh-clients openssl wget
+RUN ${CMD_pacman_INSTALL} curl iproute iputils netcat nmap openssh-clients openssl wget
 # Install programming languages and tools.
 RUN ${CMD_pacman_INSTALL} git git-review gcc golang java jre-openjdk | grep jre | grep jdk
 # Install ZSH.
