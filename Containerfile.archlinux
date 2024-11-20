@@ -1,6 +1,9 @@
 # Thanks to [GuestSneezeOSDev](https://github.com/GuestSneezeOSDev) for helping create this!
 FROM archlinux:latest
 
+# The 'archlinux:latest' container usually needs an update first for it to work.
+RUN pacman -S -y && pacman -S -u --noconfirm
+
 ENV CMD_pacman_INSTALL="pacman -S --needed --noconfirm"
 
 # Install useful tools.
