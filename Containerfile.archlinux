@@ -1,3 +1,4 @@
+# Thanks to [GuestSneezeOSDev](https://github.com/GuestSneezeOSDev) for helping create this!
 FROM archlinux:latest
 
 ENV CMD_pacman_INSTALL="pacman -S --needed --noconfirm"
