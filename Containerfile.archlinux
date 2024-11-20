@@ -1,6 +1,9 @@
 # Thanks to [GuestSneezeOSDev](https://github.com/GuestSneezeOSDev) for helping create this!
 FROM archlinux:latest
 
+# Configure the locale before doing anything.
+RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && locale-gen
+
 # The 'archlinux:latest' container usually needs an update first for it to work.
 RUN pacman-key --init && pacman -S -y && pacman -S -u --noconfirm
 
@@ -29,7 +32,7 @@ RUN ${CMD_PACMAN_INSTALL} zsh
 # Install container engines.
 RUN ${CMD_PACMAN_INSTALL} docker podman
 # Sphinx for Root Pages documentation development.
-RUN ${CMD_PACMAN_INSTALL} python
+RUN ${CMD_PACMAN_INSTALL} python-sphinx python-sphinx_rtd_theme
 # Distrobox support.
 ## distrobox-init installs these packages. We pre-install them now so the container can start instantly.
 ## https://github.com/89luca89/distrobox/blob/1.8.0/distrobox-init#L1192
