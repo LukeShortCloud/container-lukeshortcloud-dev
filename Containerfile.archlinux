@@ -18,11 +18,11 @@ RUN echo "yay ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/yay && chmod 0440 /etc/s
 ENV CMD_AUR_INSTALL="sudo --user yay yay --noconfirm -S --removemake"
 
 # Install compression tools.
-RUN ${CMD_PACMAN_INSTALL} gzip unzip zip zstd xz-utils unrar
+RUN ${CMD_PACMAN_INSTALL} gzip unrar unzip xz zip zstd
 # Install network tools.
-RUN ${CMD_PACMAN_INSTALL} curl iproute iputils netcat nmap openssh-clients openssl wget
+RUN ${CMD_PACMAN_INSTALL} curl iproute iputils netcat nmap openssh openssl wget
 # Install programming languages and tools.
-RUN ${CMD_PACMAN_INSTALL} git gcc golang jdk-openjdk
+RUN ${CMD_PACMAN_INSTALL} git gcc go jdk-openjdk
 RUN ${CMD_AUR_INSTALL} git-review
 # Install ZSH.
 RUN ${CMD_PACMAN_INSTALL} zsh
@@ -32,7 +32,9 @@ RUN ${CMD_PACMAN_INSTALL} docker podman
 RUN ${CMD_PACMAN_INSTALL} python
 # Distrobox support.
 ## distrobox-init installs these packages. We pre-install them now so the container can start instantly.
-RUN ${CMD_PACMAN_INSTALL} bash bash-completion bc bzip2 curl findutils glibc-all-langpacks glibc-locale-source gnupg2 gnupg2-smime hostname iproute iputils keyutils man-db man-pages passwd time tree unzip util-linux wget which whois words xorg-x11-xauth xz zip mesa-vulkan-drivers vulkan
+## https://github.com/89luca89/distrobox/blob/1.8.0/distrobox-init#L1192
+RUN ${CMD_PACMAN_INSTALL} bash bash-completion bc curl diffutils findutils glibc gnupg iputils inetutils keyutils less lsof man-db man-pages mlocate mtr ncurses nss-mdns openssh pigz pinentry procps-ng rsync shadow sudo tcpdump time traceroute tree tzdata unzip util-linux util-linux-libs vte-common wget words xorg-xauth zip mesa vulkan-intel vulkan-radeon
+# Install cloud client tools.
 RUN ${CMD_PACMAN_INSTALL} azure-cli
 # Install Linux distribution agnostic packages.
 COPY distro-agnostic-tools.sh /usr/local/bin/
