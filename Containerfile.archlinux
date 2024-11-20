@@ -4,26 +4,26 @@ FROM archlinux:latest
 # The 'archlinux:latest' container usually needs an update first for it to work.
 RUN pacman -S -y && pacman -S -u --noconfirm
 
-ENV CMD_pacman_INSTALL="pacman -S --needed --noconfirm"
+ENV CMD_PACMAN_INSTALL="pacman -S --needed --noconfirm"
 
 # Install useful tools.
-RUN ${CMD_pacman_INSTALL} base-devel git sudo bash vim nano emacs rsync cpio grub systemd man-db
+RUN ${CMD_PACMAN_INSTALL} base-devel git sudo bash vim nano emacs rsync cpio grub systemd man-db
 # Install compression tools.
-RUN ${CMD_pacman_INSTALL} gzip unzip zip zstd xz-utils unrar
+RUN ${CMD_PACMAN_INSTALL} gzip unzip zip zstd xz-utils unrar
 # Install network tools.
-RUN ${CMD_pacman_INSTALL} curl iproute iputils netcat nmap openssh-clients openssl wget
+RUN ${CMD_PACMAN_INSTALL} curl iproute iputils netcat nmap openssh-clients openssl wget
 # Install programming languages and tools.
-RUN ${CMD_pacman_INSTALL} git git-review gcc golang java jre-openjdk | grep jre | grep jdk
+RUN ${CMD_PACMAN_INSTALL} git git-review gcc golang java jre-openjdk | grep jre | grep jdk
 # Install ZSH.
-RUN ${CMD_pacman_INSTALL} zsh
+RUN ${CMD_PACMAN_INSTALL} zsh
 # Install container engines.
-RUN ${CMD_pacman_INSTALL} docker podman
+RUN ${CMD_PACMAN_INSTALL} docker podman
 # Sphinx for Root Pages documentation development.
-RUN ${CMD_pacman_INSTALL} python
+RUN ${CMD_PACMAN_INSTALL} python
 # Distrobox support.
 ## distrobox-init installs these packages. We pre-install them now so the container can start instantly.
-RUN ${CMD_pacman_INSTALL} bash bash-completion bc bzip2 curl findutils glibc-all-langpacks glibc-locale-source gnupg2 gnupg2-smime hostname iproute iputils keyutils man-db man-pages passwd time tree unzip util-linux wget which whois words xorg-x11-xauth xz zip mesa-vulkan-drivers vulkan
-RUN ${CMD_pacman_INSTALL} azure-cli
+RUN ${CMD_PACMAN_INSTALL} bash bash-completion bc bzip2 curl findutils glibc-all-langpacks glibc-locale-source gnupg2 gnupg2-smime hostname iproute iputils keyutils man-db man-pages passwd time tree unzip util-linux wget which whois words xorg-x11-xauth xz zip mesa-vulkan-drivers vulkan
+RUN ${CMD_PACMAN_INSTALL} azure-cli
 # Install Linux distribution agnostic packages.
 COPY distro-agnostic-tools.sh /usr/local/bin/
 RUN /usr/local/bin/distro-agnostic-tools.sh
