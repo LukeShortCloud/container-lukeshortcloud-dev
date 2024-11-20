@@ -43,10 +43,10 @@ COPY distro-agnostic-tools.sh /usr/local/bin/
 RUN /usr/local/bin/distro-agnostic-tools.sh
 
 # Cleanup.
+RUN ${CMD_PACMAN_INSTALL} pacman-contrib
 RUN ls /var/cache/pacman/pkg/ 
 RUN pacman -Sc
 RUN pacman -Scc
-RUN ${CMD_PACMAN_INSTALL} pacman-contrib
 RUN paccache -r
 
 VOLUME ["/home_real"]
