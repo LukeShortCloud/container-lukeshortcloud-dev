@@ -13,10 +13,6 @@ sudo ./aws/install
 rm -r -f ./awscliv2.zip ./aws
 aws --version
 
-# code-server (Microsoft Visual Studio Code web server).
-curl -fsSL https://code-server.dev/install.sh | sh
-code-server --version
-
 # golangci-lint.
 export GOLANGCI_LINT_VER="1.59.1"
 curl -sSfL "https://raw.githubusercontent.com/golangci/golangci-lint/v${GOLANGCI_LINT_VER}/install.sh" | sh -s -- -b /usr/local/bin "v${GOLANGCI_LINT_VER}"

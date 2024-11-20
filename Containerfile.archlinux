@@ -36,6 +36,8 @@ RUN ${CMD_PACMAN_INSTALL} python
 RUN ${CMD_PACMAN_INSTALL} bash bash-completion bc curl diffutils findutils glibc gnupg iputils inetutils keyutils less lsof man-db man-pages mlocate mtr ncurses nss-mdns openssh pigz pinentry procps-ng rsync shadow sudo tcpdump time traceroute tree tzdata unzip util-linux util-linux-libs vte-common wget words xorg-xauth zip mesa vulkan-intel vulkan-radeon
 # Install cloud client tools.
 RUN ${CMD_PACMAN_INSTALL} azure-cli
+# code-server (Microsoft Visual Studio Code web server).
+RUN ${CMD_AUR_INSTALL} code-server
 # Install Linux distribution agnostic packages.
 COPY distro-agnostic-tools.sh /usr/local/bin/
 RUN /usr/local/bin/distro-agnostic-tools.sh
