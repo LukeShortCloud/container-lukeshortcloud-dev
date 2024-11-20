@@ -7,7 +7,7 @@ RUN pacman -S -y && pacman -S -u --noconfirm
 ENV CMD_pacman_INSTALL="pacman -S --needed --noconfirm"
 
 # Install useful tools.
-RUN ${CMD_pacman_INSTALL} && pacman -S base-devel git sudo bash vim nano emacs rsync cpio grub systemd man-db
+RUN ${CMD_pacman_INSTALL} base-devel git sudo bash vim nano emacs rsync cpio grub systemd man-db
 # Install compression tools.
 RUN ${CMD_pacman_INSTALL} gzip unzip zip zstd xz-utils unrar
 # Install network tools.
