@@ -2,18 +2,28 @@
 FROM archlinux:latest
 
 # The 'archlinux:latest' container usually needs an update first for it to work.
-RUN pacman -S -y && pacman -S -u --noconfirm
+RUN pacman-key --init && pacman -S -y && pacman -S -u --noconfirm
 
 ENV CMD_PACMAN_INSTALL="pacman -S --needed --noconfirm"
 
 # Install useful tools.
 RUN ${CMD_PACMAN_INSTALL} base-devel git sudo bash vim nano emacs rsync cpio grub systemd man-db
+
+# Install 'yay' as an AUR package manager.
+RUN ${CMD_PACMAN_INSTALL} curl tar
+ENV YAY_VER="12.4.2"
+RUN curl --location --remote-name https://github.com/Jguer/yay/releases/download/v${YAY_VER}/yay_${YAY_VER}_x86_64.tar.gz --output-dir /tmp/ && tar -x -v -f /tmp/yay_${YAY_VER}_x86_64.tar.gz -C /tmp/ && mv /tmp/yay_${YAY_VER}_x86_64/yay /usr/local/bin/yay && rm -rf /tmp/yay*
+RUN groupadd --gid 1001 yay && useradd --uid 1001 --gid 1001 yay
+RUN echo "yay ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/yay && chmod 0440 /etc/sudoers.d/yay
+ENV CMD_AUR_INSTALL="sudo --user yay yay --noconfirm -S --removemake"
+
 # Install compression tools.
 RUN ${CMD_PACMAN_INSTALL} gzip unzip zip zstd xz-utils unrar
 # Install network tools.
 RUN ${CMD_PACMAN_INSTALL} curl iproute iputils netcat nmap openssh-clients openssl wget
 # Install programming languages and tools.
-RUN ${CMD_PACMAN_INSTALL} git git-review gcc golang java jre-openjdk | grep jre | grep jdk
+RUN ${CMD_PACMAN_INSTALL} git gcc golang jdk-openjdk
+RUN ${CMD_AUR_INSTALL} git-review
 # Install ZSH.
 RUN ${CMD_PACMAN_INSTALL} zsh
 # Install container engines.
