@@ -32,7 +32,7 @@ echo 'source /usr/share/bash-completion/bash_completion' >> /etc/bashrc
 echo 'source <(kubectl completion bash)' >> /etc/bashrc
 ## Carvel/k14s.
 ### Requires the "shasum" tool to install.
-wget -O- https://carvel.dev/install.sh | bash
+wget -O- https://carvel.dev/install.sh | env PATH="$PATH:/usr/bin/core_perl" bash
 ytt --version
 ## Helm.
 wget -O- https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
