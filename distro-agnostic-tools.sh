@@ -95,7 +95,7 @@ rm -r -f shellcheck-${SHELLCHECK_VER}.linux.x86_64.tar.xz shellcheck-${SHELLCHEC
 shellcheck --version
 
 # yq for querying JSON, XML, and YAML.
-export YQ_VER="v4.44.2"
+export YQ_VER="v4.44.5"
 wget https://github.com/mikefarah/yq/releases/download/${YQ_VER}/yq_linux_amd64 -O /usr/local/bin/yq
 chmod +x /usr/local/bin/yq
 yq --version
