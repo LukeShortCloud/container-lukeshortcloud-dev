@@ -19,7 +19,7 @@ curl -sSfL "https://raw.githubusercontent.com/golangci/golangci-lint/v${GOLANGCI
 golangci-lint --version
 
 # HashiCorp Vault.
-export VAULT_VER="1.17.0"
+export VAULT_VER="1.18.1"
 wget "https://releases.hashicorp.com/vault/${VAULT_VER}/vault_${VAULT_VER}_linux_amd64.zip"
 unzip vault_${VAULT_VER}_linux_amd64.zip
 sudo mv ./vault /usr/local/bin/
