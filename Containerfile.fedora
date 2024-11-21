@@ -1,4 +1,4 @@
-FROM fedora:40
+FROM fedora:41
 
 ENV CMD_DNF_INSTALL="dnf install -y --setopt=install_weak_deps=false"
 
@@ -13,7 +13,7 @@ RUN ${CMD_DNF_INSTALL} curl dnsutils iproute iputils netcat nmap openssh-clients
 RUN ${CMD_DNF_INSTALL} @development-tools git git-review gcc golang make java-17-openjdk python3 python3-pip python3-virtualenv virtualenv
 ## GitHub CLI ('gh' command).
 ## https://github.com/cli/cli/blob/trunk/docs/install_linux.md
-RUN dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo && ${CMD_DNF_INSTALL} gh --repo gh-cli && gh version
+RUN dnf-3 config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo && ${CMD_DNF_INSTALL} gh --repo gh-cli && gh version
 ## Install programming language linters.
 RUN ${CMD_DNF_INSTALL} python3-pylint shellcheck
 # Install ZSH.
