@@ -29,8 +29,7 @@ RUN ${CMD_DNF_INSTALL} bash bash-completion bc bzip2 cracklib-dicts curl diffuti
 # Azure CLI ("az" command).
 RUN ${CMD_DNF_INSTALL} azure-cli
 # code-server (Microsoft Visual Studio Code web server).
-curl -fsSL https://code-server.dev/install.sh | sh
-code-server --version
+RUN curl -fsSL https://code-server.dev/install.sh | sh && code-server --version
 # Install Linux distribution agnostic packages.
 COPY distro-agnostic-tools.sh /usr/local/bin/
 RUN /usr/local/bin/distro-agnostic-tools.sh
