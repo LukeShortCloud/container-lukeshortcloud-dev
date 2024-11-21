@@ -13,10 +13,6 @@ sudo ./aws/install
 rm -r -f ./awscliv2.zip ./aws
 aws --version
 
-# code-server (Microsoft Visual Studio Code web server).
-curl -fsSL https://code-server.dev/install.sh | sh
-code-server --version
-
 # golangci-lint.
 export GOLANGCI_LINT_VER="1.59.1"
 curl -sSfL "https://raw.githubusercontent.com/golangci/golangci-lint/v${GOLANGCI_LINT_VER}/install.sh" | sh -s -- -b /usr/local/bin "v${GOLANGCI_LINT_VER}"
@@ -36,7 +32,7 @@ echo 'source /usr/share/bash-completion/bash_completion' >> /etc/bashrc
 echo 'source <(kubectl completion bash)' >> /etc/bashrc
 ## Carvel/k14s.
 ### Requires the "shasum" tool to install.
-wget -O- https://carvel.dev/install.sh | bash
+wget -O- https://carvel.dev/install.sh | env PATH="$PATH:/usr/bin/core_perl" bash
 ytt --version
 ## Helm.
 wget -O- https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 | bash
@@ -87,6 +83,7 @@ export CARGO_HOME="/usr/local/cargo"
 export RUSTUP_HOME="/usr/local/rustup"
 echo 'PATH="/usr/local/cargo/bin:${PATH}"' > /etc/profile.d/rust.sh && chmod +x /etc/profile.d/rust.sh
 curl -sSf https://sh.rustup.rs | bash -s -- -y
+/usr/local/cargo/bin/rustup default stable
 /usr/local/cargo/bin/cargo version
 
 # ShellCheck.

@@ -1,0 +1,67 @@
+# Thanks to [GuestSneezeOSDev](https://github.com/GuestSneezeOSDev) for helping create this!
+FROM archlinux:latest
+
+# Configure the locale before doing anything.
+RUN echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && locale-gen
+
+# The 'archlinux:latest' container usually needs an update first for it to work.
+RUN pacman-key --init && pacman -S -y && pacman -S -u --noconfirm
+
+ENV CMD_PACMAN_INSTALL="pacman -S --needed --noconfirm"
+
+# Install useful tools.
+RUN ${CMD_PACMAN_INSTALL} base-devel bash cpio git man-db nano rsync sudo systemd tmux vim
+
+# Install 'yay' as an AUR package manager.
+RUN ${CMD_PACMAN_INSTALL} curl tar
+ENV YAY_VER="12.4.2"
+RUN curl --location --remote-name https://github.com/Jguer/yay/releases/download/v${YAY_VER}/yay_${YAY_VER}_x86_64.tar.gz --output-dir /tmp/ && tar -x -v -f /tmp/yay_${YAY_VER}_x86_64.tar.gz -C /tmp/ && mv /tmp/yay_${YAY_VER}_x86_64/yay /usr/local/bin/yay && rm -rf /tmp/yay*
+RUN groupadd --gid 1001 yay && useradd --uid 1001 --gid 1001 yay
+RUN echo "yay ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/yay && chmod 0440 /etc/sudoers.d/yay
+ENV CMD_AUR_INSTALL="sudo --user yay yay --noconfirm -S --removemake"
+
+# Install compression tools.
+RUN ${CMD_PACMAN_INSTALL} gzip unrar unzip xz zip zstd
+# Install network tools.
+RUN ${CMD_PACMAN_INSTALL} curl iproute iputils netcat nmap openssh openssl wget
+# Install programming languages and tools.
+RUN ${CMD_PACMAN_INSTALL} git gcc go jdk-openjdk
+RUN ${CMD_AUR_INSTALL} git-review
+# Install ZSH.
+RUN ${CMD_PACMAN_INSTALL} zsh
+# Install container engines.
+RUN ${CMD_PACMAN_INSTALL} docker podman
+# Sphinx for Root Pages documentation development.
+RUN ${CMD_PACMAN_INSTALL} python-sphinx python-sphinx_rtd_theme
+# Distrobox support.
+## distrobox-init installs these packages. We pre-install them now so the container can start instantly.
+## https://github.com/89luca89/distrobox/blob/1.8.0/distrobox-init#L1192
+RUN ${CMD_PACMAN_INSTALL} bash bash-completion bc curl diffutils findutils glibc gnupg iputils inetutils keyutils less lsof man-db man-pages mlocate mtr ncurses nss-mdns openssh pigz pinentry procps-ng rsync shadow sudo tcpdump time traceroute tree tzdata unzip util-linux util-linux-libs vte-common wget words xorg-xauth zip mesa vulkan-intel vulkan-radeon
+# Install cloud client tools.
+RUN ${CMD_PACMAN_INSTALL} azure-cli
+# code-server (Microsoft Visual Studio Code web server).
+RUN ${CMD_AUR_INSTALL} code-server
+# Install Linux distribution agnostic packages.
+COPY distro-agnostic-tools.sh /usr/local/bin/
+RUN /usr/local/bin/distro-agnostic-tools.sh
+
+# Cleanup.
+RUN ${CMD_PACMAN_INSTALL} pacman-contrib
+RUN ls /var/cache/pacman/pkg/ 
+RUN pacman -Sc
+RUN pacman -Scc
+RUN paccache -r
+
+VOLUME ["/home_real"]
+
+# code-server custom port (default is 8080).
+EXPOSE 2003
+
+# Toolbox support.
+ENV NAME=lukeshortcloud-dev VERSION=rolling
+LABEL com.github.containers.toolbox="true" \
+  name="$NAME" \
+  version="$VERSION"
+RUN echo "%wheel ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers.d/toolbox
+CMD ["/bin/bash"]
+
