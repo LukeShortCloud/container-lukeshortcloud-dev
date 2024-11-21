@@ -10,7 +10,7 @@ RUN pacman-key --init && pacman -S -y && pacman -S -u --noconfirm
 ENV CMD_PACMAN_INSTALL="pacman -S --needed --noconfirm"
 
 # Install useful tools.
-RUN ${CMD_PACMAN_INSTALL} base-devel git sudo bash vim nano emacs rsync cpio grub systemd man-db
+RUN ${CMD_PACMAN_INSTALL} base-devel bash cpio git man-db nano rsync sudo systemd tmux vim
 
 # Install 'yay' as an AUR package manager.
 RUN ${CMD_PACMAN_INSTALL} curl tar
