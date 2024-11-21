@@ -14,7 +14,7 @@ rm -r -f ./awscliv2.zip ./aws
 aws --version
 
 # golangci-lint.
-export GOLANGCI_LINT_VER="1.59.1"
+export GOLANGCI_LINT_VER="1.62.0"
 curl -sSfL "https://raw.githubusercontent.com/golangci/golangci-lint/v${GOLANGCI_LINT_VER}/install.sh" | sh -s -- -b /usr/local/bin "v${GOLANGCI_LINT_VER}"
 golangci-lint --version
 
