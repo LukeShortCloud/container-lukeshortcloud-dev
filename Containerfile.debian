@@ -1,4 +1,4 @@
-FROM debian:12.5
+FROM debian:12.8
 
 ENV CMD_APT_INSTALL="apt-get install -y --no-install-recommends"
 
