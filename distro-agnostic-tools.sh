@@ -83,6 +83,7 @@ export CARGO_HOME="/usr/local/cargo"
 export RUSTUP_HOME="/usr/local/rustup"
 echo 'PATH="/usr/local/cargo/bin:${PATH}"' > /etc/profile.d/rust.sh && chmod +x /etc/profile.d/rust.sh
 curl -sSf https://sh.rustup.rs | bash -s -- -y
+/usr/local/cargo/bin/rustup default stable
 /usr/local/cargo/bin/cargo version
 
 # ShellCheck.
