@@ -10,7 +10,7 @@ RUN pacman-key --init && pacman -S -y && pacman -S -u --noconfirm
 ENV CMD_PACMAN_INSTALL="pacman -S --needed --noconfirm"
 
 # Install useful tools.
-RUN ${CMD_PACMAN_INSTALL} base-devel bash cpio git man-db nano rsync sudo systemd tmux vim
+RUN ${CMD_PACMAN_INSTALL} base-devel bash clamav cpio git jq man-db nano plocate rsync sudo systemd tmate tmux vim
 
 # Install 'yay' as an AUR package manager.
 RUN ${CMD_PACMAN_INSTALL} curl tar
@@ -21,12 +21,14 @@ RUN echo "yay ALL=(root) NOPASSWD:ALL" > /etc/sudoers.d/yay && chmod 0440 /etc/s
 ENV CMD_AUR_INSTALL="sudo --user yay yay --noconfirm -S --removemake"
 
 # Install compression tools.
-RUN ${CMD_PACMAN_INSTALL} gzip unrar unzip xz zip zstd
+RUN ${CMD_PACMAN_INSTALL} gzip p7zip unrar unzip xz zip zstd
 # Install network tools.
 RUN ${CMD_PACMAN_INSTALL} curl iproute iputils netcat nmap openssh openssl wget
 # Install programming languages and tools.
-RUN ${CMD_PACMAN_INSTALL} git gcc go jdk-openjdk
+RUN ${CMD_PACMAN_INSTALL} gcc git github-cli go jdk-openjdk python python-pip python-virtualenv
 RUN ${CMD_AUR_INSTALL} git-review
+## Install programming language linteres.
+RUN ${CMD_PACMAN_INSTALL} python-pylint shellcheck
 # Install ZSH.
 RUN ${CMD_PACMAN_INSTALL} zsh
 # Install container engines.
