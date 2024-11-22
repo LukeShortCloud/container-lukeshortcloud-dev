@@ -18,6 +18,8 @@ Build (optional):
 $ [docker|podman] build --pull --tag lukeshortcloud/dev-[archlinux|debian|fedora]:latest . -f Containerfile.[archlinux|debian|fedora]
 ```
 
+-  If rebuilding the Arch Linux container, the `--no-cache` argument may be needed to deal with the rolling releases.
+
 Experimental support is provided for Ubuntu builds:
 
 ```
