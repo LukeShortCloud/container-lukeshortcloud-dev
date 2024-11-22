@@ -86,14 +86,6 @@ curl -sSf https://sh.rustup.rs | bash -s -- -y
 /usr/local/cargo/bin/rustup default stable
 /usr/local/cargo/bin/cargo version
 
-# ShellCheck.
-export SHELLCHECK_VER="v0.10.0"
-wget https://github.com/koalaman/shellcheck/releases/download/${SHELLCHECK_VER}/shellcheck-${SHELLCHECK_VER}.linux.x86_64.tar.xz
-tar -xvf shellcheck-${SHELLCHECK_VER}.linux.x86_64.tar.xz
-mv shellcheck-${SHELLCHECK_VER}/shellcheck /usr/local/bin/shellcheck
-rm -r -f shellcheck-${SHELLCHECK_VER}.linux.x86_64.tar.xz shellcheck-${SHELLCHECK_VER}
-shellcheck --version
-
 # yq for querying JSON, XML, and YAML.
 export YQ_VER="v4.44.5"
 wget https://github.com/mikefarah/yq/releases/download/${YQ_VER}/yq_linux_amd64 -O /usr/local/bin/yq
