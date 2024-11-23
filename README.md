@@ -63,6 +63,18 @@ $ tmux new-session -d -s code-server 'code-server --bind-addr 0.0.0.0:2003'
 $ cat ~/.config/code-server/config.yaml | grep password:
 ```
 
+## Contributors
+
+Here are community contributors who have helped the `dev` container project.
+
+**Founder:**
+
+- [LukeShortCloud](https://github.com/LukeShortCloud)
+
+**Code:**
+
+- [GuestSneezeOSDev](https://github.com/GuestSneezeOSDev)
+
 ## License
 
 GPLv3
