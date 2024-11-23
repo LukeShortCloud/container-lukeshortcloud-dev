@@ -1,0 +1,32 @@
+name: Build all container images
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  build:
+    name: Build all container images
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Change directory
+        run: cd $GITHUB_WORKSPACE
+      - name: Install Bash
+        run: sudo apt-get update && sudo apt-get install -y bash shellcheck
+      - name: Check syntax of scripts
+        run: bash -n distro-agnostic-tools.sh && shellcheck distro-agnostic-tools.sh
+      - name: Create Arch Linux container
+        run: docker build --no-cache --pull --tag lukeshortcloud/dev-archlinux:latest . -f Containerfile.archlinux
+      - name: Free up storage space previously used by docker
+        run: docker system prune --all --force
+      - name: Create Debian container
+        run: docker build --pull --tag lukeshortcloud/dev-debian:latest . -f Containerfile.debian
+      - name: Free up storage space previously used by docker
+        run: docker system prune --all --force
+      - name: Create Fedora container
+        run: docker build --pull --tag lukeshortcloud/dev-fedora:latest . -f Containerfile.fedora
+      - name: Free up storage space previously used by docker
+        run: docker system prune --all --force
+      - name: Prepare Ubuntu Containerfile
+        run: cp Containerfile.debian Containerfile.ubuntu && sed -i s'/^FROM debian:.*/FROM ubuntu:24.04/'g Containerfile.ubuntu
+      - name: Create Ubuntu container
+        run: docker build --pull --tag lukeshortcloud/dev-ubuntu:latest . -f Containerfile.ubuntu
