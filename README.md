@@ -4,7 +4,7 @@
 
 ## Container Registry
 
-Quay.io automatically builds and publishes a new container with the tag `:latest` after every commit to the `main` GitHub branch. Every tagged release in GitHub is also built as a container with the same tag.
+For each tagged release on GitHub, a GitHub Actions CI/CD pipeline tests each container image build. It then pushes them to the Quay.io container registry using the same tag and also a `latest` tag.
 
 - quay.io/lukeshortcloud/dev-archlinux:latest
 - quay.io/lukeshortcloud/dev-debian:latest

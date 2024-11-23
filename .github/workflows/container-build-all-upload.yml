@@ -1,0 +1,63 @@
+name: Upload all container images
+on:
+  push:
+    tags:
+      - '*'
+jobs:
+  build:
+    name: Upload all container images
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Change directory
+        run: cd $GITHUB_WORKSPACE
+      - name: Login to Quay.io container registry
+        uses: docker/login-action@v3
+        with:
+          registry: quay.io
+          username: ${{ secrets.QUAY_USER }}
+          password: ${{ secrets.QUAY_TOKEN }}
+      - name: Build and push Arch Linux container
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Containerfile.archlinux
+          push: true
+          tags: |
+            quay.io/lukeshortcloud/dev-archlinux:latest
+            quay.io/lukeshortcloud/dev-archlinux:${{  github.ref_name }}
+      - name: Free up storage space previously used by docker
+        run: docker system prune --all --force
+      - name: Build and push Debian container
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Containerfile.debian
+          push: true
+          tags: |
+            quay.io/lukeshortcloud/dev-debian:latest
+            quay.io/lukeshortcloud/dev-debian:${{  github.ref_name }}
+      - name: Free up storage space previously used by docker
+        run: docker system prune --all --force
+      - name: Build and push Fedora container
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Containerfile.fedora
+          push: true
+          tags: |
+            quay.io/lukeshortcloud/dev-fedora:latest
+            quay.io/lukeshortcloud/dev-fedora:${{  github.ref_name }}
+      - name: Free up storage space previously used by docker
+        run: docker system prune --all --force
+      - name: Prepare Ubuntu Containerfile
+        run: cp Containerfile.debian Containerfile.ubuntu && sed -i s'/^FROM debian:.*/FROM ubuntu:24.04/'g Containerfile.ubuntu
+      - name: Build and push Ubuntu container
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          file: Containerfile.ubuntu
+          push: true
+          tags: |
+            quay.io/lukeshortcloud/dev-ubuntu:latest
+            quay.io/lukeshortcloud/dev-ubuntu:${{  github.ref_name }}
