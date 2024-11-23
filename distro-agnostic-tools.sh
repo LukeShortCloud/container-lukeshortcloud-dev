@@ -81,6 +81,7 @@ curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh | bash
 ## Configure Rust to be installed globally.
 export CARGO_HOME="/usr/local/cargo"
 export RUSTUP_HOME="/usr/local/rustup"
+# shellcheck disable=SC2016
 echo 'PATH="/usr/local/cargo/bin:${PATH}"' > /etc/profile.d/rust.sh && chmod +x /etc/profile.d/rust.sh
 curl -sSf https://sh.rustup.rs | bash -s -- -y
 /usr/local/cargo/bin/rustup default stable
