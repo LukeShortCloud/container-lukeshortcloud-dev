@@ -1,6 +1,8 @@
 name: Build all container images
 on:
   push:
+    tags-ignore:
+      - '**'
   workflow_dispatch:
 jobs:
   build:
