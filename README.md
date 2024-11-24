@@ -1,6 +1,21 @@
 # container-lukeshortcloud-dev
 
-`dev` is a container image full of useful development tools. An Arch Linux, Debian, Fedora, and Ubuntu container are maintained.
+`dev` is a container image full of useful development tools.
+
+## Features
+
+- Linux distribution of your choice: Arch Linux, Debian, Fedora, or Ubuntu.
+- Programming languages and linters for them:
+    - C
+    - Go
+    - Java
+    - Python
+    - Rust
+    - Shell (Bash and Zsh)
+- Cloud tools: AWS, Azure, and Kubernetes support.
+- Visual Studio Code web server via [code-server](https://github.com/coder/code-server).
+- Docker and Podman container engine support.
+- Distrobox and Toolbox integration.
 
 ## Container Registry
 
