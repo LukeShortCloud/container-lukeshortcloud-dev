@@ -2,17 +2,25 @@ FROM fedora:42
 
 ENV CMD_DNF_INSTALL="dnf install -y --setopt=install_weak_deps=false"
 
+# Install specific packages or Enterprise Linux and Fedora.
+RUN if grep ID_LIKE /usr/lib/os-release | grep rhel; then \
+        ${CMD_DNF_INSTALL} epel-release 'dnf-command(config-manager)'; \
+        /usr/bin/crb enable; \
+    else \
+        ${CMD_DNF_INSTALL} azure-cli docker dnf5 dnf5-plugins tmate util-linux-script @development-tools; \
+    fi
+
 # Install useful tools.
 ## Fedora specific packages.
-RUN ${CMD_DNF_INSTALL} audit copr-cli dnf dnf-plugins-core dnf5 dnf5-plugins dnf-utils fedpkg policycoreutils-python-utils rpmdevtools rpm-ostree rpmrebuild
+RUN ${CMD_DNF_INSTALL} audit copr-cli dnf dnf-plugins-core dnf-utils fedpkg policycoreutils-python-utils rpmdevtools rpm-ostree rpmrebuild
 ## 'sudo' is required for the container to work as a Toolbox.
-RUN ${CMD_DNF_INSTALL} bash-completion clamav clamav-freshclam fedpkg jq less man-db nano pciutils perl-Digest-SHA plocate rsync sudo systemd tmate tmux vim
+RUN ${CMD_DNF_INSTALL} bash-completion clamav clamav-freshclam fedpkg jq less man-db nano pciutils perl-Digest-SHA plocate rsync sudo systemd tmux vim
 # Install compression tools.
 RUN ${CMD_DNF_INSTALL} gzip p7zip p7zip-plugins unzip zip zstd
 # Install network tools.
 RUN ${CMD_DNF_INSTALL} curl dnsutils iproute iputils netcat nmap openssh-clients openssl wget
 # Install programming languages and tools.
-RUN ${CMD_DNF_INSTALL} @development-tools git git-review gcc gcc-c++ golang make java-21-openjdk python3 python3-pip python3-virtualenv virtualenv
+RUN ${CMD_DNF_INSTALL} git git-review gcc gcc-c++ golang make java-21-openjdk python3 python3-pip python3-virtualenv virtualenv
 ## GitHub CLI ('gh' command).
 ## https://github.com/cli/cli/blob/trunk/docs/install_linux.md
 RUN dnf-3 config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo && ${CMD_DNF_INSTALL} gh --repo gh-cli && gh version
@@ -21,16 +29,14 @@ RUN ${CMD_DNF_INSTALL} python3-pylint shellcheck
 # Install ZSH.
 RUN ${CMD_DNF_INSTALL} zsh
 # Install container engines.
-RUN ${CMD_DNF_INSTALL} docker podman
+RUN ${CMD_DNF_INSTALL} podman
 # Sphinx for Root Pages documentation development.
 RUN ${CMD_DNF_INSTALL} python3-sphinx python3-sphinx_rtd_theme
 # Distrobox support.
 ## distrobox-init installs these packages. We pre-install them now so the container can start instantly.
 ## https://github.com/89luca89/distrobox/blob/1.7.2.1/distrobox-init#L665
 ## https://github.com/89luca89/distrobox/commit/f1526c469bd931261fefaa75f81e74fce9019fe2
-RUN ${CMD_DNF_INSTALL} bash bash-completion bc bzip2 cracklib-dicts curl diffutils dnf-plugins-core findutils glibc-all-langpacks glibc-locale-source gnupg2 gnupg2-smime hostname iproute iputils keyutils krb5-libs less lsof man-db man-pages mtr ncurses nss-mdns openssh-clients pam passwd pigz pinentry procps-ng rsync shadow-utils sudo tcpdump time traceroute tree tzdata unzip util-linux util-linux-script vte-profile wget which whois words xorg-x11-xauth xz zip mesa-dri-drivers mesa-vulkan-drivers vulkan
-# Azure CLI ("az" command).
-RUN ${CMD_DNF_INSTALL} azure-cli
+RUN ${CMD_DNF_INSTALL} bash bash-completion bc bzip2 cracklib-dicts curl diffutils dnf-plugins-core findutils glibc-all-langpacks glibc-locale-source gnupg2 gnupg2-smime hostname iproute iputils keyutils krb5-libs less lsof man-db man-pages mtr ncurses nss-mdns openssh-clients pam passwd pigz pinentry procps-ng rsync shadow-utils sudo tcpdump time traceroute tree tzdata unzip util-linux vte-profile wget which whois words xorg-x11-xauth xz zip mesa-dri-drivers mesa-vulkan-drivers vulkan
 # code-server (Microsoft Visual Studio Code web server).
 RUN curl -fsSL https://code-server.dev/install.sh | sh && code-server --version
 # Install Linux distribution agnostic packages.

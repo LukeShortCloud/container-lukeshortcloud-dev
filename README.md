@@ -4,7 +4,7 @@
 
 ## Features
 
-- Linux distribution of your choice: Arch Linux, Debian, Fedora, or Ubuntu.
+- Linux distribution of your choice: AlmaLinux, Arch Linux, Debian, Fedora, or Ubuntu.
 - Programming languages and linters for them:
     - C and C++
     - Go
@@ -21,6 +21,7 @@
 
 For each tagged release on GitHub, a GitHub Actions CI/CD pipeline tests each container image build. It then pushes them to the Quay.io container registry using the same tag and also a `latest` tag.
 
+- quay.io/lukeshortcloud/dev-almalinux:latest
 - quay.io/lukeshortcloud/dev-archlinux:latest
 - quay.io/lukeshortcloud/dev-debian:latest
 - quay.io/lukeshortcloud/dev-fedora:latest
@@ -31,12 +32,23 @@ For each tagged release on GitHub, a GitHub Actions CI/CD pipeline tests each co
 Build (optional):
 
 ```
-$ [docker|podman] build --pull --tag lukeshortcloud/dev-[archlinux|debian|fedora]:latest . -f Containerfile.[archlinux|debian|fedora]
+$ [docker|podman] build --pull --tag lukeshortcloud/dev-[almalinux|archlinux|debian|fedora]:latest . -f Containerfile.[almalinux|archlinux|debian|fedora]
 ```
 
--  If rebuilding the Arch Linux container, the `--no-cache` argument may be needed to deal with the rolling releases.
+- If rebuilding the Arch Linux container, the `--no-cache` argument may be needed to deal with the rolling releases.
 
-Full support is also provided for an Ubuntu build:
+Partial support is provided for an AlmaLinux (Enterprise Linux) 10 build:
+
+```
+$ cp Containerfile.fedora Containerfile.almalinux
+$ sed -i s'/^FROM fedora:.*/FROM almalinux:10/'g Containerfile.almalinux
+$ [docker|podman] build --pull --tag lukeshortcloud/dev-almalinux:latest . -f Containerfile.almalinux
+```
+
+- [az (azure-cli) is not supported](https://github.com/azure/azure-cli/issues/31749).
+- Nested `docker` is not supported.
+
+Full support is provided for an Ubuntu build:
 
 ```
 $ cp Containerfile.debian Containerfile.ubuntu
@@ -47,28 +59,28 @@ $ [docker|podman] build --pull --tag lukeshortcloud/dev-ubuntu:latest . -f Conta
 Run as a container:
 
 ```
-$ [docker|podman] run -p 127.0.0.1:2003:2003 -v ${HOME}:/home_real -d --name dev-[archlinux|debian|fedora|ubuntu] lukeshortcloud/dev-[archlinux|debian|fedora|ubuntu]:latest code-server --bind-addr 0.0.0.0:2003
+$ [docker|podman] run -p 127.0.0.1:2003:2003 -v ${HOME}:/home_real -d --name dev-[almalinux|archlinux|debian|fedora|ubuntu] lukeshortcloud/dev-[almalinux|archlinux|debian|fedora|ubuntu]:latest code-server --bind-addr 0.0.0.0:2003
 ```
 
 Run as a container with Docker Engine support:
 
 ```
-$ [docker|podman] run -v ${HOME}:/home_real -v /var/run/docker.sock:/var/run/docker.sock --network host -d --name dev-[archlinux|debian|fedora|ubuntu] lukeshortcloud/dev-[archlinux|debian|fedora|ubuntu]:latest code-server --bind-addr 0.0.0.0:2003
-$ [docker|podman] exec dev-[archlinux|debian|fedora|ubuntu] cat /root/.config/code-server/config.yaml | grep password:
+$ [docker|podman] run -v ${HOME}:/home_real -v /var/run/docker.sock:/var/run/docker.sock --network host -d --name dev-[almalinux|archlinux|debian|fedora|ubuntu] lukeshortcloud/dev-[almalinux|archlinux|debian|fedora|ubuntu]:latest code-server --bind-addr 0.0.0.0:2003
+$ [docker|podman] exec dev-[almalinux|archlinux|debian|fedora|ubuntu] cat /root/.config/code-server/config.yaml | grep password:
 ```
 
 Run as a Toolbox on Fedora Atomic Desktop:
 
 ```
-$ toolbox create --image lukeshortcloud/dev-[archlinux|debian|fedora|ubuntu]:latest
-$ toolbox enter lukeshortcloud-dev-[archlinux|debian|fedora|ubuntu]-latest
+$ toolbox create --image lukeshortcloud/dev-[almalinux|archlinux|debian|fedora|ubuntu]:latest
+$ toolbox enter lukeshortcloud-dev-[almalinux|archlinux|debian|fedora|ubuntu]-latest
 ```
 
 Run as a Distrobox on any Linux distribution:
 
 ```
-$ distrobox create --init --image lukeshortcloud/dev-[archlinux|debian|fedora|ubuntu]:latest --name dev-[archlinux|debian|fedora|ubuntu]
-$ distrobox enter dev-[archlinux|debian|fedora|ubuntu]
+$ distrobox create --init --image lukeshortcloud/dev-[almalinux|archlinux|debian|fedora|ubuntu]:latest --name dev-[almalinux|archlinux|debian|fedora|ubuntu]
+$ distrobox enter dev-[almalinux|archlinux|debian|fedora|ubuntu]
 ```
 
 If using Distrobox or Toolbox, optionally inside the container, run the `code-server` service and then find the password.
