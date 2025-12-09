@@ -27,7 +27,8 @@ RUN ${CMD_DNF_INSTALL} python3-sphinx python3-sphinx_rtd_theme
 # Distrobox support.
 ## distrobox-init installs these packages. We pre-install them now so the container can start instantly.
 ## https://github.com/89luca89/distrobox/blob/1.7.2.1/distrobox-init#L665
-RUN ${CMD_DNF_INSTALL} bash bash-completion bc bzip2 cracklib-dicts curl diffutils dnf-plugins-core findutils glibc-all-langpacks glibc-locale-source gnupg2 gnupg2-smime hostname iproute iputils keyutils krb5-libs less lsof man-db man-pages mtr ncurses nss-mdns openssh-clients pam passwd pigz pinentry procps-ng rsync shadow-utils sudo tcpdump time traceroute tree tzdata unzip util-linux vte-profile wget which whois words xorg-x11-xauth xz zip mesa-dri-drivers mesa-vulkan-drivers vulkan
+## https://github.com/89luca89/distrobox/commit/f1526c469bd931261fefaa75f81e74fce9019fe2
+RUN ${CMD_DNF_INSTALL} bash bash-completion bc bzip2 cracklib-dicts curl diffutils dnf-plugins-core findutils glibc-all-langpacks glibc-locale-source gnupg2 gnupg2-smime hostname iproute iputils keyutils krb5-libs less lsof man-db man-pages mtr ncurses nss-mdns openssh-clients pam passwd pigz pinentry procps-ng rsync shadow-utils sudo tcpdump time traceroute tree tzdata unzip util-linux util-linux-script vte-profile wget which whois words xorg-x11-xauth xz zip mesa-dri-drivers mesa-vulkan-drivers vulkan
 # Azure CLI ("az" command).
 RUN ${CMD_DNF_INSTALL} azure-cli
 # code-server (Microsoft Visual Studio Code web server).
