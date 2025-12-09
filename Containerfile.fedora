@@ -12,7 +12,7 @@ RUN ${CMD_DNF_INSTALL} gzip p7zip p7zip-plugins unzip zip zstd
 # Install network tools.
 RUN ${CMD_DNF_INSTALL} curl dnsutils iproute iputils netcat nmap openssh-clients openssl wget
 # Install programming languages and tools.
-RUN ${CMD_DNF_INSTALL} @development-tools git git-review gcc golang make java-21-openjdk python3 python3-pip python3-virtualenv virtualenv
+RUN ${CMD_DNF_INSTALL} @development-tools git git-review gcc gcc-c++ golang make java-21-openjdk python3 python3-pip python3-virtualenv virtualenv
 ## GitHub CLI ('gh' command).
 ## https://github.com/cli/cli/blob/trunk/docs/install_linux.md
 RUN dnf-3 config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo && ${CMD_DNF_INSTALL} gh --repo gh-cli && gh version

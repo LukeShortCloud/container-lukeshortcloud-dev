@@ -6,7 +6,7 @@
 
 - Linux distribution of your choice: Arch Linux, Debian, Fedora, or Ubuntu.
 - Programming languages and linters for them:
-    - C
+    - C and C++
     - Go
     - Java
     - Python
