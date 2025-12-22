@@ -2,7 +2,7 @@ FROM debian:13.2
 
 ENV CMD_APT_INSTALL="apt-get install -y --no-install-recommends"
 
-RUN apt-get update
+RUN apt-get -o Acquire::Check-Valid-Until=false update
 # Install useful tools.
 ## 'ca-certificates' is not installed by default in Debian container images.
 ## https://stackoverflow.com/questions/66473954/no-installed-certificates-on-debianbuster-docker-image
